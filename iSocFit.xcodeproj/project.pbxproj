@@ -15,6 +15,20 @@
 		CE5438F325DE8EB800C98478 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5438F125DE8EB800C98478 /* LaunchScreen.storyboard */; };
 		CE5438FE25DE8EB800C98478 /* iSocFitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5438FD25DE8EB800C98478 /* iSocFitTests.swift */; };
 		CE54390925DE8EB800C98478 /* iSocFitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54390825DE8EB800C98478 /* iSocFitUITests.swift */; };
+		CE54392725DEA08500C98478 /* dumbbell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54392625DEA08500C98478 /* dumbbell.jpg */; };
+		CE54392C25E04D1100C98478 /* dumbbell.png in Resources */ = {isa = PBXBuildFile; fileRef = CE54392B25E04D1100C98478 /* dumbbell.png */; };
+		CE54393225E16C5B00C98478 /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54393025E16C5B00C98478 /* ProfileInfoTableViewController.swift */; };
+		CE54393325E16C5B00C98478 /* ProfileInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54393125E16C5B00C98478 /* ProfileInfoTableViewController.xib */; };
+		CE54393825E1723400C98478 /* User image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54393725E1723400C98478 /* User image.jpg */; };
+		CE54394525E194F300C98478 /* 7 (2).jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54394425E194F300C98478 /* 7 (2).jpg */; };
+		CE54394E25E3C14B00C98478 /* AbilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54394C25E3C14B00C98478 /* AbilitiesViewController.swift */; };
+		CE54394F25E3C14B00C98478 /* AbilitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54394D25E3C14B00C98478 /* AbilitiesViewController.xib */; };
+		CE54395B25E3E51700C98478 /* AbilitiesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54395925E3E51700C98478 /* AbilitiesCustomCell.swift */; };
+		CE54395C25E3E51700C98478 /* AbilitiesCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54395A25E3E51700C98478 /* AbilitiesCustomCell.xib */; };
+		CE54396A25E4125400C98478 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54396825E4125400C98478 /* MenuViewController.swift */; };
+		CE54396B25E4125400C98478 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54396925E4125400C98478 /* MenuViewController.xib */; };
+		CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397725E416AB00C98478 /* MainMenu.jpg */; };
+		CE54397D25E4352700C98478 /* body-scale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397C25E4352700C98478 /* body-scale.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +63,20 @@
 		CE54390425DE8EB800C98478 /* iSocFitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSocFitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE54390825DE8EB800C98478 /* iSocFitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSocFitUITests.swift; sourceTree = "<group>"; };
 		CE54390A25DE8EB800C98478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE54392625DEA08500C98478 /* dumbbell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dumbbell.jpg; sourceTree = "<group>"; };
+		CE54392B25E04D1100C98478 /* dumbbell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dumbbell.png; sourceTree = "<group>"; };
+		CE54393025E16C5B00C98478 /* ProfileInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewController.swift; sourceTree = "<group>"; };
+		CE54393125E16C5B00C98478 /* ProfileInfoTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoTableViewController.xib; sourceTree = "<group>"; };
+		CE54393725E1723400C98478 /* User image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "User image.jpg"; sourceTree = "<group>"; };
+		CE54394425E194F300C98478 /* 7 (2).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "7 (2).jpg"; sourceTree = "<group>"; };
+		CE54394C25E3C14B00C98478 /* AbilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesViewController.swift; sourceTree = "<group>"; };
+		CE54394D25E3C14B00C98478 /* AbilitiesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbilitiesViewController.xib; sourceTree = "<group>"; };
+		CE54395925E3E51700C98478 /* AbilitiesCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesCustomCell.swift; sourceTree = "<group>"; };
+		CE54395A25E3E51700C98478 /* AbilitiesCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbilitiesCustomCell.xib; sourceTree = "<group>"; };
+		CE54396825E4125400C98478 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		CE54396925E4125400C98478 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		CE54397725E416AB00C98478 /* MainMenu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MainMenu.jpg; sourceTree = "<group>"; };
+		CE54397C25E4352700C98478 /* body-scale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "body-scale.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +127,11 @@
 		CE5438E525DE8EB600C98478 /* iSocFit */ = {
 			isa = PBXGroup;
 			children = (
+				CE54395325E3C2D300C98478 /* icons */,
+				CE54394425E194F300C98478 /* 7 (2).jpg */,
+				CE54393725E1723400C98478 /* User image.jpg */,
+				CE54392B25E04D1100C98478 /* dumbbell.png */,
+				CE54392625DEA08500C98478 /* dumbbell.jpg */,
 				CE5438E625DE8EB600C98478 /* AppDelegate.swift */,
 				CE5438E825DE8EB600C98478 /* SceneDelegate.swift */,
 				CE5438EA25DE8EB600C98478 /* ViewController.swift */,
@@ -106,6 +139,14 @@
 				CE5438EF25DE8EB800C98478 /* Assets.xcassets */,
 				CE5438F125DE8EB800C98478 /* LaunchScreen.storyboard */,
 				CE5438F425DE8EB800C98478 /* Info.plist */,
+				CE54393025E16C5B00C98478 /* ProfileInfoTableViewController.swift */,
+				CE54393125E16C5B00C98478 /* ProfileInfoTableViewController.xib */,
+				CE54394C25E3C14B00C98478 /* AbilitiesViewController.swift */,
+				CE54394D25E3C14B00C98478 /* AbilitiesViewController.xib */,
+				CE54395925E3E51700C98478 /* AbilitiesCustomCell.swift */,
+				CE54395A25E3E51700C98478 /* AbilitiesCustomCell.xib */,
+				CE54396825E4125400C98478 /* MenuViewController.swift */,
+				CE54396925E4125400C98478 /* MenuViewController.xib */,
 			);
 			path = iSocFit;
 			sourceTree = "<group>";
@@ -126,6 +167,15 @@
 				CE54390A25DE8EB800C98478 /* Info.plist */,
 			);
 			path = iSocFitUITests;
+			sourceTree = "<group>";
+		};
+		CE54395325E3C2D300C98478 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				CE54397C25E4352700C98478 /* body-scale.jpg */,
+				CE54397725E416AB00C98478 /* MainMenu.jpg */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +281,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */,
+				CE54392C25E04D1100C98478 /* dumbbell.png in Resources */,
+				CE54394F25E3C14B00C98478 /* AbilitiesViewController.xib in Resources */,
 				CE5438F325DE8EB800C98478 /* LaunchScreen.storyboard in Resources */,
+				CE54395C25E3E51700C98478 /* AbilitiesCustomCell.xib in Resources */,
+				CE54394525E194F300C98478 /* 7 (2).jpg in Resources */,
 				CE5438F025DE8EB800C98478 /* Assets.xcassets in Resources */,
+				CE54396B25E4125400C98478 /* MenuViewController.xib in Resources */,
 				CE5438EE25DE8EB600C98478 /* Main.storyboard in Resources */,
+				CE54393325E16C5B00C98478 /* ProfileInfoTableViewController.xib in Resources */,
+				CE54392725DEA08500C98478 /* dumbbell.jpg in Resources */,
+				CE54397D25E4352700C98478 /* body-scale.jpg in Resources */,
+				CE54393825E1723400C98478 /* User image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +319,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5438EB25DE8EB600C98478 /* ViewController.swift in Sources */,
+				CE54394E25E3C14B00C98478 /* AbilitiesViewController.swift in Sources */,
 				CE5438E725DE8EB600C98478 /* AppDelegate.swift in Sources */,
+				CE54396A25E4125400C98478 /* MenuViewController.swift in Sources */,
+				CE54395B25E3E51700C98478 /* AbilitiesCustomCell.swift in Sources */,
 				CE5438E925DE8EB600C98478 /* SceneDelegate.swift in Sources */,
+				CE54393225E16C5B00C98478 /* ProfileInfoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
