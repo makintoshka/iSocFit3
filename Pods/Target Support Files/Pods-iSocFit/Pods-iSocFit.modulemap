@@ -1,6 +1,0 @@
-framework module Pods_iSocFit {
-  umbrella header "Pods-iSocFit-umbrella.h"
-
-  export *
-  module * { export * }
-}

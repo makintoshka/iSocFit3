@@ -1,6 +1,0 @@
-framework module Pods_iSocFitTests {
-  umbrella header "Pods-iSocFitTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
