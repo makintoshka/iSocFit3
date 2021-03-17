@@ -1,37 +1,20 @@
 //
-//  ProfileInfoTableViewController.swift
+//  WorkoutsViewController.swift
 //  iSocFit
 //
-//  Created by makintosh on 20.02.2021.
+//  Created by makintosh on 28.02.2021.
 //
 
 import UIKit
 
-class ProfileInfoTableViewController: UITableViewController {
+class WorkoutsViewController: UITableViewController {
         
-    @IBOutlet var userFullName: UILabel!
-    @IBOutlet var userTag: UILabel!
-    @IBOutlet var userPhoto: UIImageView!
-    @IBOutlet var userNumber: UILabel!
-    @IBOutlet var userEmail: UILabel!
-    @IBOutlet var userAbout: UILabel!
-    @IBOutlet var aboutControl: UISegmentedControl!
-    
-    override func loadView() {
-        
-        super.loadView()
-        userPhoto.image = UIImage(named: "User image.jpg")
-        
-        self.navigationItem.setLeftBarButtonItems(nil, animated: true)
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        aboutControl.addTarget(self, action: #selector(openAbilityVC(sender:)), for: .valueChanged)
+        navigationItem.title = "Workouts"
         
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
                                             style: .plain,
@@ -40,19 +23,17 @@ class ProfileInfoTableViewController: UITableViewController {
         
         menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
         self.navigationItem.leftBarButtonItem = menuBarButton
-        
+        /*
+        let menuBarButton = UIBarButtonItem(title: "Menu",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(openMenuAction(sender:)))
+        self.navigationItem.leftBarButtonItem = menuBarButton
+         */
+        self.tableView.register(UINib(nibName: "WorkoutsCustomCell", bundle: nil), forCellReuseIdentifier: "workoutCell")
     }
-    
-    
+
     // MARK: - Actions
-    
-    @objc func openAbilityVC(sender: UISegmentedControl){
-        
-        //let abilityVС = AbilitiesViewController()
-        //self.navigationController?.pushViewController(abilityVС, animated: true)
-        aboutControl.selectedSegmentIndex = 0
-        
-    }
     
     @objc func openMenuAction(sender: UIBarButtonItem){
         
@@ -61,25 +42,40 @@ class ProfileInfoTableViewController: UITableViewController {
         self.navigationController?.pushViewController(menuVC!, animated: true)
         
     }
-
+    
     // MARK: - Table view data source
-    /*
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-    }
-    */
-    /*override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80.0
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 4
+    }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutsCustomCell
 
         // Configure the cell...
 
         return cell
-    }*/
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "openConstructor", sender: self)
+        
+    }
     
 
     /*

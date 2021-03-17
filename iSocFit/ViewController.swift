@@ -12,19 +12,23 @@ class ViewController: UIViewController {
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
+    
+    
     @IBAction func actionLogin(){
         
         
-        
-        //let profileInfoController = storyboard?.instantiateViewController(identifier: "profileInfo")
-        //self.present(vc!, animated: true, completion: nil)
-        //self.navigationController?.pushViewController(profileInfoController!, animated: true)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         
     }
     
     override func loadView() {
         super.loadView()
+        
+        
         
         //let loginController = UIViewController()
         
@@ -36,6 +40,12 @@ class ViewController: UIViewController {
         
       
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
 }

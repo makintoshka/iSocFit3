@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C694ACDBC70961303D580A0 /* Pods_iSocFitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A50514B55560C43660EFDC2 /* Pods_iSocFitTests.framework */; };
 		CE5438E725DE8EB600C98478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5438E625DE8EB600C98478 /* AppDelegate.swift */; };
 		CE5438E925DE8EB600C98478 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5438E825DE8EB600C98478 /* SceneDelegate.swift */; };
 		CE5438EB25DE8EB600C98478 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5438EA25DE8EB600C98478 /* ViewController.swift */; };
@@ -29,6 +30,30 @@
 		CE54396B25E4125400C98478 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54396925E4125400C98478 /* MenuViewController.xib */; };
 		CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397725E416AB00C98478 /* MainMenu.jpg */; };
 		CE54397D25E4352700C98478 /* body-scale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397C25E4352700C98478 /* body-scale.jpg */; };
+		CE54399225E962FE00C98478 /* Vector.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54399125E962FE00C98478 /* Vector.jpg */; };
+		CE5439A225EBC70400C98478 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439A025EBC70400C98478 /* WorkoutsViewController.swift */; };
+		CE5439A325EBC70400C98478 /* WorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439A125EBC70400C98478 /* WorkoutsViewController.xib */; };
+		CE5439A925EBC8A500C98478 /* WorkoutsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439A725EBC8A500C98478 /* WorkoutsCustomCell.swift */; };
+		CE5439AA25EBC8A500C98478 /* WorkoutsCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439A825EBC8A500C98478 /* WorkoutsCustomCell.xib */; };
+		CE5439AF25EBCBE800C98478 /* clock.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE5439AE25EBCBE800C98478 /* clock.jpg */; };
+		CE5439B425EBCC9900C98478 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5439B325EBCC9900C98478 /* clock.png */; };
+		CE5439BA25ED136200C98478 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439B825ED136200C98478 /* TrainingViewController.swift */; };
+		CE5439BB25ED136200C98478 /* TrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439B925ED136200C98478 /* TrainingViewController.xib */; };
+		CE5439C125ED144D00C98478 /* TrainingCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439BF25ED144D00C98478 /* TrainingCustomCell.swift */; };
+		CE5439C225ED144D00C98478 /* TrainingCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439C025ED144D00C98478 /* TrainingCustomCell.xib */; };
+		CE5439EA25F164EC00C98478 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5439E925F164EC00C98478 /* list.png */; };
+		CE5439F725F1672D00C98478 /* list (1).png in Resources */ = {isa = PBXBuildFile; fileRef = CE5439F625F1672D00C98478 /* list (1).png */; };
+		CE543A0425F1984900C98478 /* weight-scale (1).png in Resources */ = {isa = PBXBuildFile; fileRef = CE543A0325F1984900C98478 /* weight-scale (1).png */; };
+		CE543A0925F22AE600C98478 /* AbilitySearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A0825F22AE600C98478 /* AbilitySearchCollectionReusableView.swift */; };
+		CE543A1625F4C12500C98478 /* AbilityProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A1425F4C12500C98478 /* AbilityProgressViewController.swift */; };
+		CE543A1725F4C12500C98478 /* AbilityProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A1525F4C12500C98478 /* AbilityProgressViewController.xib */; };
+		CE543A1C25F55DFC00C98478 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = CE543A1B25F55DFB00C98478 /* refresh.png */; };
+		CE543A2C25FF9F5300C98478 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A2A25FF9F5300C98478 /* ExerciseInfoCell.swift */; };
+		CE543A2D25FF9F5300C98478 /* ExerciseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A2B25FF9F5300C98478 /* ExerciseInfoCell.xib */; };
+		CE543A3325FF9F8300C98478 /* ExerciseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */; };
+		CE543A3425FF9F8300C98478 /* ExerciseInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */; };
+		D4DEA2D48693D547523598A5 /* Pods_iSocFit_iSocFitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58EA9E42951EE0A23D0FF3A /* Pods_iSocFit_iSocFitUITests.framework */; };
+		E9A2ABCEDA65173E9D33C335 /* Pods_iSocFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +74,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A50514B55560C43660EFDC2 /* Pods_iSocFitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSocFitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		583F7DAA3B00B8D833725222 /* Pods-iSocFit-iSocFitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSocFit-iSocFitUITests.debug.xcconfig"; path = "Target Support Files/Pods-iSocFit-iSocFitUITests/Pods-iSocFit-iSocFitUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		66FC8879E6F1AD1E0E0A1961 /* Pods-iSocFit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSocFit.debug.xcconfig"; path = "Target Support Files/Pods-iSocFit/Pods-iSocFit.debug.xcconfig"; sourceTree = "<group>"; };
+		73318B2AA2D2FC040969DC17 /* Pods-iSocFitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSocFitTests.debug.xcconfig"; path = "Target Support Files/Pods-iSocFitTests/Pods-iSocFitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C8D69B9FF2F79E3736F297C /* Pods-iSocFitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSocFitTests.release.xcconfig"; path = "Target Support Files/Pods-iSocFitTests/Pods-iSocFitTests.release.xcconfig"; sourceTree = "<group>"; };
+		B0B6517B750EDA73CBAB04FE /* Pods-iSocFit-iSocFitUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSocFit-iSocFitUITests.release.xcconfig"; path = "Target Support Files/Pods-iSocFit-iSocFitUITests/Pods-iSocFit-iSocFitUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B58EA9E42951EE0A23D0FF3A /* Pods_iSocFit_iSocFitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSocFit_iSocFitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C392DC7963C355F09FCB6D8E /* Pods-iSocFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSocFit.release.xcconfig"; path = "Target Support Files/Pods-iSocFit/Pods-iSocFit.release.xcconfig"; sourceTree = "<group>"; };
 		CE5438E325DE8EB600C98478 /* iSocFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSocFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5438E625DE8EB600C98478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5438E825DE8EB600C98478 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +110,29 @@
 		CE54396925E4125400C98478 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		CE54397725E416AB00C98478 /* MainMenu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MainMenu.jpg; sourceTree = "<group>"; };
 		CE54397C25E4352700C98478 /* body-scale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "body-scale.jpg"; sourceTree = "<group>"; };
+		CE54399125E962FE00C98478 /* Vector.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Vector.jpg; sourceTree = "<group>"; };
+		CE5439A025EBC70400C98478 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
+		CE5439A125EBC70400C98478 /* WorkoutsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutsViewController.xib; sourceTree = "<group>"; };
+		CE5439A725EBC8A500C98478 /* WorkoutsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsCustomCell.swift; sourceTree = "<group>"; };
+		CE5439A825EBC8A500C98478 /* WorkoutsCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutsCustomCell.xib; sourceTree = "<group>"; };
+		CE5439AE25EBCBE800C98478 /* clock.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clock.jpg; sourceTree = "<group>"; };
+		CE5439B325EBCC9900C98478 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		CE5439B825ED136200C98478 /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
+		CE5439B925ED136200C98478 /* TrainingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainingViewController.xib; sourceTree = "<group>"; };
+		CE5439BF25ED144D00C98478 /* TrainingCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCustomCell.swift; sourceTree = "<group>"; };
+		CE5439C025ED144D00C98478 /* TrainingCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainingCustomCell.xib; sourceTree = "<group>"; };
+		CE5439E925F164EC00C98478 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		CE5439F625F1672D00C98478 /* list (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list (1).png"; sourceTree = "<group>"; };
+		CE543A0325F1984900C98478 /* weight-scale (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight-scale (1).png"; sourceTree = "<group>"; };
+		CE543A0825F22AE600C98478 /* AbilitySearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitySearchCollectionReusableView.swift; sourceTree = "<group>"; };
+		CE543A1425F4C12500C98478 /* AbilityProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityProgressViewController.swift; sourceTree = "<group>"; };
+		CE543A1525F4C12500C98478 /* AbilityProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbilityProgressViewController.xib; sourceTree = "<group>"; };
+		CE543A1B25F55DFB00C98478 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		CE543A2A25FF9F5300C98478 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoCell.swift; sourceTree = "<group>"; };
+		CE543A2B25FF9F5300C98478 /* ExerciseInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseInfoCell.xib; sourceTree = "<group>"; };
+		CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoViewController.swift; sourceTree = "<group>"; };
+		CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseInfoViewController.xib; sourceTree = "<group>"; };
+		E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSocFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9A2ABCEDA65173E9D33C335 /* Pods_iSocFit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C694ACDBC70961303D580A0 /* Pods_iSocFitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,12 +156,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4DEA2D48693D547523598A5 /* Pods_iSocFit_iSocFitUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BBD6EEE32A9491371F0753BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */,
+				B58EA9E42951EE0A23D0FF3A /* Pods_iSocFit_iSocFitUITests.framework */,
+				3A50514B55560C43660EFDC2 /* Pods_iSocFitTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE5438DA25DE8EB600C98478 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +180,8 @@
 				CE5438FC25DE8EB800C98478 /* iSocFitTests */,
 				CE54390725DE8EB800C98478 /* iSocFitUITests */,
 				CE5438E425DE8EB600C98478 /* Products */,
+				ED914ADB8EFBA2C3B8A95D69 /* Pods */,
+				BBD6EEE32A9491371F0753BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,10 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				CE54395325E3C2D300C98478 /* icons */,
-				CE54394425E194F300C98478 /* 7 (2).jpg */,
-				CE54393725E1723400C98478 /* User image.jpg */,
-				CE54392B25E04D1100C98478 /* dumbbell.png */,
-				CE54392625DEA08500C98478 /* dumbbell.jpg */,
 				CE5438E625DE8EB600C98478 /* AppDelegate.swift */,
 				CE5438E825DE8EB600C98478 /* SceneDelegate.swift */,
 				CE5438EA25DE8EB600C98478 /* ViewController.swift */,
@@ -147,6 +214,21 @@
 				CE54395A25E3E51700C98478 /* AbilitiesCustomCell.xib */,
 				CE54396825E4125400C98478 /* MenuViewController.swift */,
 				CE54396925E4125400C98478 /* MenuViewController.xib */,
+				CE5439A025EBC70400C98478 /* WorkoutsViewController.swift */,
+				CE5439A125EBC70400C98478 /* WorkoutsViewController.xib */,
+				CE5439A725EBC8A500C98478 /* WorkoutsCustomCell.swift */,
+				CE5439A825EBC8A500C98478 /* WorkoutsCustomCell.xib */,
+				CE5439B825ED136200C98478 /* TrainingViewController.swift */,
+				CE5439B925ED136200C98478 /* TrainingViewController.xib */,
+				CE5439BF25ED144D00C98478 /* TrainingCustomCell.swift */,
+				CE5439C025ED144D00C98478 /* TrainingCustomCell.xib */,
+				CE543A0825F22AE600C98478 /* AbilitySearchCollectionReusableView.swift */,
+				CE543A1425F4C12500C98478 /* AbilityProgressViewController.swift */,
+				CE543A1525F4C12500C98478 /* AbilityProgressViewController.xib */,
+				CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */,
+				CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */,
+				CE543A2A25FF9F5300C98478 /* ExerciseInfoCell.swift */,
+				CE543A2B25FF9F5300C98478 /* ExerciseInfoCell.xib */,
 			);
 			path = iSocFit;
 			sourceTree = "<group>";
@@ -172,10 +254,34 @@
 		CE54395325E3C2D300C98478 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				CE543A1B25F55DFB00C98478 /* refresh.png */,
+				CE543A0325F1984900C98478 /* weight-scale (1).png */,
+				CE5439F625F1672D00C98478 /* list (1).png */,
+				CE5439E925F164EC00C98478 /* list.png */,
+				CE5439B325EBCC9900C98478 /* clock.png */,
+				CE5439AE25EBCBE800C98478 /* clock.jpg */,
+				CE54399125E962FE00C98478 /* Vector.jpg */,
 				CE54397C25E4352700C98478 /* body-scale.jpg */,
 				CE54397725E416AB00C98478 /* MainMenu.jpg */,
+				CE54394425E194F300C98478 /* 7 (2).jpg */,
+				CE54393725E1723400C98478 /* User image.jpg */,
+				CE54392B25E04D1100C98478 /* dumbbell.png */,
+				CE54392625DEA08500C98478 /* dumbbell.jpg */,
 			);
 			path = icons;
+			sourceTree = "<group>";
+		};
+		ED914ADB8EFBA2C3B8A95D69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66FC8879E6F1AD1E0E0A1961 /* Pods-iSocFit.debug.xcconfig */,
+				C392DC7963C355F09FCB6D8E /* Pods-iSocFit.release.xcconfig */,
+				583F7DAA3B00B8D833725222 /* Pods-iSocFit-iSocFitUITests.debug.xcconfig */,
+				B0B6517B750EDA73CBAB04FE /* Pods-iSocFit-iSocFitUITests.release.xcconfig */,
+				73318B2AA2D2FC040969DC17 /* Pods-iSocFitTests.debug.xcconfig */,
+				8C8D69B9FF2F79E3736F297C /* Pods-iSocFitTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +291,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE54390D25DE8EB800C98478 /* Build configuration list for PBXNativeTarget "iSocFit" */;
 			buildPhases = (
+				2B9A803F05483E5B5860DF97 /* [CP] Check Pods Manifest.lock */,
 				CE5438DF25DE8EB600C98478 /* Sources */,
 				CE5438E025DE8EB600C98478 /* Frameworks */,
 				CE5438E125DE8EB600C98478 /* Resources */,
+				00086F1D8CE1CC9E86FAD402 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,6 +310,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE54391025DE8EB800C98478 /* Build configuration list for PBXNativeTarget "iSocFitTests" */;
 			buildPhases = (
+				18C14C82983B9D10B4F7C4F2 /* [CP] Check Pods Manifest.lock */,
 				CE5438F525DE8EB800C98478 /* Sources */,
 				CE5438F625DE8EB800C98478 /* Frameworks */,
 				CE5438F725DE8EB800C98478 /* Resources */,
@@ -220,9 +329,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE54391325DE8EB800C98478 /* Build configuration list for PBXNativeTarget "iSocFitUITests" */;
 			buildPhases = (
+				BA769B43A83230BA4B7ED08D /* [CP] Check Pods Manifest.lock */,
 				CE54390025DE8EB800C98478 /* Sources */,
 				CE54390125DE8EB800C98478 /* Frameworks */,
 				CE54390225DE8EB800C98478 /* Resources */,
+				433223EEC3C5C71C878CED50 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,18 +392,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5439B425EBCC9900C98478 /* clock.png in Resources */,
+				CE5439AA25EBC8A500C98478 /* WorkoutsCustomCell.xib in Resources */,
 				CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */,
 				CE54392C25E04D1100C98478 /* dumbbell.png in Resources */,
+				CE54399225E962FE00C98478 /* Vector.jpg in Resources */,
 				CE54394F25E3C14B00C98478 /* AbilitiesViewController.xib in Resources */,
+				CE5439C225ED144D00C98478 /* TrainingCustomCell.xib in Resources */,
+				CE5439BB25ED136200C98478 /* TrainingViewController.xib in Resources */,
 				CE5438F325DE8EB800C98478 /* LaunchScreen.storyboard in Resources */,
 				CE54395C25E3E51700C98478 /* AbilitiesCustomCell.xib in Resources */,
 				CE54394525E194F300C98478 /* 7 (2).jpg in Resources */,
 				CE5438F025DE8EB800C98478 /* Assets.xcassets in Resources */,
 				CE54396B25E4125400C98478 /* MenuViewController.xib in Resources */,
+				CE5439AF25EBCBE800C98478 /* clock.jpg in Resources */,
+				CE5439EA25F164EC00C98478 /* list.png in Resources */,
 				CE5438EE25DE8EB600C98478 /* Main.storyboard in Resources */,
 				CE54393325E16C5B00C98478 /* ProfileInfoTableViewController.xib in Resources */,
+				CE5439A325EBC70400C98478 /* WorkoutsViewController.xib in Resources */,
+				CE543A0425F1984900C98478 /* weight-scale (1).png in Resources */,
+				CE543A1C25F55DFC00C98478 /* refresh.png in Resources */,
 				CE54392725DEA08500C98478 /* dumbbell.jpg in Resources */,
+				CE543A1725F4C12500C98478 /* AbilityProgressViewController.xib in Resources */,
+				CE5439F725F1672D00C98478 /* list (1).png in Resources */,
+				CE543A2D25FF9F5300C98478 /* ExerciseInfoCell.xib in Resources */,
 				CE54397D25E4352700C98478 /* body-scale.jpg in Resources */,
+				CE543A3425FF9F8300C98478 /* ExerciseInfoViewController.xib in Resources */,
 				CE54393825E1723400C98478 /* User image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,18 +438,129 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00086F1D8CE1CC9E86FAD402 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iSocFit/Pods-iSocFit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iSocFit/Pods-iSocFit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iSocFit/Pods-iSocFit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		18C14C82983B9D10B4F7C4F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iSocFitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B9A803F05483E5B5860DF97 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iSocFit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		433223EEC3C5C71C878CED50 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iSocFit-iSocFitUITests/Pods-iSocFit-iSocFitUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iSocFit-iSocFitUITests/Pods-iSocFit-iSocFitUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iSocFit-iSocFitUITests/Pods-iSocFit-iSocFitUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA769B43A83230BA4B7ED08D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iSocFit-iSocFitUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CE5438DF25DE8EB600C98478 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5439BA25ED136200C98478 /* TrainingViewController.swift in Sources */,
 				CE5438EB25DE8EB600C98478 /* ViewController.swift in Sources */,
+				CE5439C125ED144D00C98478 /* TrainingCustomCell.swift in Sources */,
 				CE54394E25E3C14B00C98478 /* AbilitiesViewController.swift in Sources */,
 				CE5438E725DE8EB600C98478 /* AppDelegate.swift in Sources */,
 				CE54396A25E4125400C98478 /* MenuViewController.swift in Sources */,
+				CE543A0925F22AE600C98478 /* AbilitySearchCollectionReusableView.swift in Sources */,
+				CE543A3325FF9F8300C98478 /* ExerciseInfoViewController.swift in Sources */,
+				CE543A2C25FF9F5300C98478 /* ExerciseInfoCell.swift in Sources */,
+				CE5439A225EBC70400C98478 /* WorkoutsViewController.swift in Sources */,
 				CE54395B25E3E51700C98478 /* AbilitiesCustomCell.swift in Sources */,
 				CE5438E925DE8EB600C98478 /* SceneDelegate.swift in Sources */,
+				CE543A1625F4C12500C98478 /* AbilityProgressViewController.swift in Sources */,
 				CE54393225E16C5B00C98478 /* ProfileInfoTableViewController.swift in Sources */,
+				CE5439A925EBC8A500C98478 /* WorkoutsCustomCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +733,7 @@
 		};
 		CE54390E25DE8EB800C98478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66FC8879E6F1AD1E0E0A1961 /* Pods-iSocFit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -515,6 +752,7 @@
 		};
 		CE54390F25DE8EB800C98478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C392DC7963C355F09FCB6D8E /* Pods-iSocFit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -533,6 +771,7 @@
 		};
 		CE54391125DE8EB800C98478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73318B2AA2D2FC040969DC17 /* Pods-iSocFitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -554,6 +793,7 @@
 		};
 		CE54391225DE8EB800C98478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C8D69B9FF2F79E3736F297C /* Pods-iSocFitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -575,6 +815,7 @@
 		};
 		CE54391425DE8EB800C98478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 583F7DAA3B00B8D833725222 /* Pods-iSocFit-iSocFitUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -594,6 +835,7 @@
 		};
 		CE54391525DE8EB800C98478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0B6517B750EDA73CBAB04FE /* Pods-iSocFit-iSocFitUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

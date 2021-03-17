@@ -8,9 +8,32 @@
 import UIKit
 
 class MenuViewController: UITableViewController {
+    
+    @IBAction func openWorkouts(){
         
+        let workoutsVC = WorkoutsViewController()
+        navigationController?.pushViewController(workoutsVC, animated: true)
+        
+    }
+    
+    @IBAction func openProfile(){
+        
+        let profileVC = ProfileInfoTableViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
+        
+    }
+    
+    @IBAction func logout(){
+        
+        let loginvc = ViewController()
+        navigationController?.popToRootViewController(animated: true)
+        
+    }
+    
     override func loadView() {
         super.loadView()
+        
+        //let menuVc = MenuViewController()
         
         
     }

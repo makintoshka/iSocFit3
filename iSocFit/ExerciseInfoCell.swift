@@ -1,20 +1,22 @@
 //
-//  AbilitiesCustomCell.swift
+//  ExerciseInfoCell.swift
 //  iSocFit
 //
-//  Created by makintosh on 22.02.2021.
+//  Created by makintosh on 15.03.2021.
 //
 
 import UIKit
 
-class AbilitiesCustomCell: UICollectionViewCell {
+class ExerciseInfoCell: UICollectionViewCell {
 
-    @IBOutlet var imageIconForCell: UIImageView!
-    @IBOutlet var abilityTitleForCell: UILabel!
-    @IBOutlet var abilityValueLabel: UILabel!
+    @IBOutlet var iconImage: UIImageView!
+    @IBOutlet var parameterName: UILabel!
+    @IBOutlet var valueForParam: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        
+        
         
     }
     
@@ -29,19 +31,14 @@ class AbilitiesCustomCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        contentView.layer.cornerRadius = 12.0
-        contentView.layer.masksToBounds = true
-        layer.cornerRadius = 12.0
-        layer.masksToBounds = false
-        
         layer.shadowRadius = 5.0
         layer.shadowOpacity = 0.1
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5)
         
         
-        imageIconForCell.image = UIImage(named: "body-scale.jpg")
+        
+        
         
     }
-
 }
