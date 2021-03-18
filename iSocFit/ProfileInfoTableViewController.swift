@@ -48,8 +48,7 @@ class ProfileInfoTableViewController: UITableViewController {
     
     @objc func openAbilityVC(sender: UISegmentedControl){
         
-        //let abilityVС = AbilitiesViewController()
-        //self.navigationController?.pushViewController(abilityVС, animated: true)
+
         aboutControl.selectedSegmentIndex = 0
         
     }

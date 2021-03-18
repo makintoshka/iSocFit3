@@ -23,13 +23,7 @@ class WorkoutsViewController: UITableViewController {
         
         menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
         self.navigationItem.leftBarButtonItem = menuBarButton
-        /*
-        let menuBarButton = UIBarButtonItem(title: "Menu",
-                                            style: .plain,
-                                            target: self,
-                                            action: #selector(openMenuAction(sender:)))
-        self.navigationItem.leftBarButtonItem = menuBarButton
-         */
+        
         self.tableView.register(UINib(nibName: "WorkoutsCustomCell", bundle: nil), forCellReuseIdentifier: "workoutCell")
     }
 
