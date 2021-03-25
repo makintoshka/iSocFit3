@@ -14,7 +14,13 @@ class WorkoutsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Workouts"
+        self.navigationItem.title = "Workouts"
+        
+        self.navigationItem.rightBarButtonItem = editButtonItem
+        
+//        let editBarButton = UIBarButtonItem(barButtonSystemItem: .edit,
+//                                            target: self,
+//                                            action: #selector(editingAction(sender:)))
         
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
                                             style: .plain,
@@ -23,11 +29,23 @@ class WorkoutsViewController: UITableViewController {
         
         menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
         self.navigationItem.leftBarButtonItem = menuBarButton
+        //self.navigationItem.rightBarButtonItem = editButtonItem
         
         self.tableView.register(UINib(nibName: "WorkoutsCustomCell", bundle: nil), forCellReuseIdentifier: "workoutCell")
     }
 
     // MARK: - Actions
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        let indexPaths = tableView.indexPathsForVisibleRows
+        
+        for indexPath in indexPaths! {
+            let cell = tableView.cellForRow(at: indexPath) as! WorkoutsCustomCell
+            cell.isInEditingMode = editing
+        }
+    }
     
     @objc func openMenuAction(sender: UIBarButtonItem){
         

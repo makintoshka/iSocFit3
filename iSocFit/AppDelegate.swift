@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let loginController = ViewController()
-        let navController = UINavigationController(rootViewController: loginController)
+        let menuVC =  MenuViewController()
+        let leftMenuNavigationController = SideMenuNavigationController(rootViewController: menuVC)
+        leftMenuNavigationController.leftSide = false
+        SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
+        
         
         return true
     }

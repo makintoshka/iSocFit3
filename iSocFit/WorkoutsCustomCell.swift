@@ -19,6 +19,16 @@ class WorkoutsCustomCell: UITableViewCell {
     
     @IBOutlet var workoutNotesLabel: UILabel!
     
+    //@IBOutlet var deleteButton: UIButton!
+    
+    var isInEditingMode: Bool = false {
+        
+        didSet{
+            //deleteButton.isHidden = !isInEditingMode
+        }
+        
+    }
+    
     var workoutNameForCell: UILabel = {
         
         var workoutName = UILabel()

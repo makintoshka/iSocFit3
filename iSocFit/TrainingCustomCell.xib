@@ -137,6 +137,11 @@
                             <constraint firstAttribute="width" constant="11.5" id="p5G-58-sx0"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfJ-F1-bi0">
+                        <rect key="frame" x="5" y="5" width="15" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button" image="Group_68__1_-removebg-preview (1).png"/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="jMA-MR-xu3"/>
@@ -165,6 +170,7 @@
             <size key="customSize" width="78" height="77"/>
             <connections>
                 <outlet property="bottomLine" destination="I2A-2c-kGr" id="yz9-we-Dp5"/>
+                <outlet property="deleteButton" destination="XfJ-F1-bi0" id="MUd-Tg-XXe"/>
                 <outlet property="exerciseLeadTime" destination="Xnz-vY-qvg" id="19y-UQ-L25"/>
                 <outlet property="exerciseRepeatsValue" destination="nqL-CL-o5b" id="Rkc-DX-UGJ"/>
                 <outlet property="exerciseSetsValue" destination="vPI-yh-Ahy" id="oTp-KE-Yaz"/>
@@ -178,6 +184,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Group_68__1_-removebg-preview (1).png" width="60" height="60"/>
         <image name="clock.png" width="384" height="384"/>
         <image name="refresh.png" width="384" height="384"/>
     </resources>

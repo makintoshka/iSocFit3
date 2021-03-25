@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class MenuViewController: UITableViewController {
     
@@ -26,6 +27,9 @@ class MenuViewController: UITableViewController {
     @IBAction func logout(){
         
         let loginvc = ViewController()
+        //let menuVC = UINavigationController(rootViewController: loginvc)
+        //menuVC.popToRootViewController(animated: true)
+    
         navigationController?.popToRootViewController(animated: true)
         
     }

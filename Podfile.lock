@@ -2,17 +2,21 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Charts
+  - SideMenu
 
 SPEC REPOS:
   trunk:
     - Charts
+    - SideMenu
 
 SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 194d4441438ddc61bcd3e948f16341385f96e59b
+PODFILE CHECKSUM: 7eabe33b437f7703462daeed65455f6278f20972
 
 COCOAPODS: 1.10.0

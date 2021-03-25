@@ -8,6 +8,7 @@ target 'iSocFit' do
   # Pods for iSocFit
 
   pod 'Charts'
+  pod ‘SideMenu’
 
   target 'iSocFitTests' do
     inherit! :search_paths

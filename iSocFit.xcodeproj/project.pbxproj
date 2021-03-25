@@ -52,6 +52,7 @@
 		CE543A2D25FF9F5300C98478 /* ExerciseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A2B25FF9F5300C98478 /* ExerciseInfoCell.xib */; };
 		CE543A3325FF9F8300C98478 /* ExerciseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */; };
 		CE543A3425FF9F8300C98478 /* ExerciseInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */; };
+		CE543A4B2605379A00C98478 /* Group_68__1_-removebg-preview (1).png in Resources */ = {isa = PBXBuildFile; fileRef = CE543A4A2605379A00C98478 /* Group_68__1_-removebg-preview (1).png */; };
 		D4DEA2D48693D547523598A5 /* Pods_iSocFit_iSocFitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58EA9E42951EE0A23D0FF3A /* Pods_iSocFit_iSocFitUITests.framework */; };
 		E9A2ABCEDA65173E9D33C335 /* Pods_iSocFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */; };
 /* End PBXBuildFile section */
@@ -132,6 +133,7 @@
 		CE543A2B25FF9F5300C98478 /* ExerciseInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseInfoCell.xib; sourceTree = "<group>"; };
 		CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoViewController.swift; sourceTree = "<group>"; };
 		CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseInfoViewController.xib; sourceTree = "<group>"; };
+		CE543A4A2605379A00C98478 /* Group_68__1_-removebg-preview (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group_68__1_-removebg-preview (1).png"; sourceTree = "<group>"; };
 		E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSocFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -254,6 +256,7 @@
 		CE54395325E3C2D300C98478 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				CE543A4A2605379A00C98478 /* Group_68__1_-removebg-preview (1).png */,
 				CE543A1B25F55DFB00C98478 /* refresh.png */,
 				CE543A0325F1984900C98478 /* weight-scale (1).png */,
 				CE5439F625F1672D00C98478 /* list (1).png */,
@@ -397,6 +400,7 @@
 				CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */,
 				CE54392C25E04D1100C98478 /* dumbbell.png in Resources */,
 				CE54399225E962FE00C98478 /* Vector.jpg in Resources */,
+				CE543A4B2605379A00C98478 /* Group_68__1_-removebg-preview (1).png in Resources */,
 				CE54394F25E3C14B00C98478 /* AbilitiesViewController.xib in Resources */,
 				CE5439C225ED144D00C98478 /* TrainingCustomCell.xib in Resources */,
 				CE5439BB25ED136200C98478 /* TrainingViewController.xib in Resources */,

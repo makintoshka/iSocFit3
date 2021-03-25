@@ -283,7 +283,9 @@
                             <outlet property="delegate" destination="c1e-5w-r11" id="8IS-Ex-Bp6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Profile" id="woh-fq-t9S"/>
+                    <navigationItem key="navigationItem" title="Profile" id="woh-fq-t9S">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="dXT-a8-8qM"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="aboutControl" destination="oyd-Qz-jWN" id="2P9-LR-2tt"/>
                         <outlet property="userAbout" destination="j8q-M1-rfs" id="9yl-K1-8iP"/>
@@ -522,6 +524,7 @@
                             <outlet property="delegate" destination="VqN-34-Arf" id="bNH-y2-SbH"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="JsG-gt-Ovt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEF-Oy-wzB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -718,6 +721,9 @@
                         <color key="backgroundColor" red="0.98039215686274506" green="0.99215686274509807" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="MK4-Ml-RLk"/>
+                    <connections>
+                        <outlet property="exerciseCollectionView" destination="2rh-bK-6VI" id="3YC-7Z-PD4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUn-vu-Pos" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -731,19 +737,29 @@
             </objects>
             <point key="canvasLocation" x="2954" y="-550"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Side Menu Navigation Controller-->
         <scene sceneID="UYj-3v-hAW">
             <objects>
-                <navigationController id="VOt-Ei-NVW" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tZG-Yc-Bls" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="VOt-Ei-NVW" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aSa-gf-JpA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="menuWidth">
+                            <real key="value" value="200"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="completeGestureDuration">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="W06-Em-Tpu"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7FC-pJ-JTz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tZG-Yc-Bls" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-232" y="94"/>
         </scene>

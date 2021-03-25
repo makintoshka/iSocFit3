@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class ProfileInfoTableViewController: UITableViewController {
         
@@ -55,9 +56,19 @@ class ProfileInfoTableViewController: UITableViewController {
     
     @objc func openMenuAction(sender: UIBarButtonItem){
         
-        
+        //let loginVC = ViewController()
         let menuVC = storyboard?.instantiateViewController(identifier: "menuViewController")
-        self.navigationController?.pushViewController(menuVC!, animated: true)
+        
+        let leftMenuNavigationController = SideMenuNavigationController(rootViewController: menuVC!)
+        leftMenuNavigationController.leftSide = false
+        SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        present(leftMenuNavigationController, animated: true, completion: nil)
+        
+        //dismiss(animated: true, completion: nil)
+        //let menuVC = storyboard?.instantiateViewController(identifier: "menuViewController")
+        //self.navigationController?.pushViewController(menuVC!, animated: true)
         
     }
 

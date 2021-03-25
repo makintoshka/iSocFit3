@@ -24,13 +24,31 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = editButtonItem
         
         self.collectionView!.register(UINib(nibName: "TrainingCustomCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         
     }
 
-
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        let indexPaths = collectionView.indexPathsForVisibleItems
+        
+        for indexPath in indexPaths {
+            let cell = collectionView.cellForItem(at: indexPath) as! TrainingCustomCell
+            
+            cell.isInEditingMode = editing
+        }
+        
+    }
+    
+    // MARK: - Actions
+    
+    
+    
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -46,6 +64,8 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)  as! TrainingCustomCell
+        
+        cell.deleteButton.isHidden = true
         
         if indexPath.section == 0 {
             if indexPath.row == 0 {

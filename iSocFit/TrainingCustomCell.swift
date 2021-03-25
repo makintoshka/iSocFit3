@@ -18,6 +18,16 @@ class TrainingCustomCell: UICollectionViewCell {
     @IBOutlet var leftLine: UIView!
     @IBOutlet var rightLine: UIView!
     @IBOutlet var bottomLine: UIView!
+    @IBOutlet var deleteButton: UIButton!
+    
+    var isInEditingMode: Bool = false {
+        
+        didSet{
+            deleteButton.isHidden = !isInEditingMode
+            
+        }
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -41,8 +51,6 @@ class TrainingCustomCell: UICollectionViewCell {
         visibleRect.layer.masksToBounds = true
         layer.cornerRadius = 7.0
         layer.masksToBounds = false
-        
-        
         
         
         

@@ -18,9 +18,9 @@ class ExerciseInfoViewController: UIViewController, UICollectionViewDelegate, UI
     override func loadView() {
         super.loadView()
         
-        //exerciseCollectionView.dataSource = self
-        //exerciseCollectionView.delegate = self
-        exerciseCollectionView.register(ExerciseInfoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        exerciseCollectionView.dataSource = self
+        exerciseCollectionView.delegate = self
+        self.exerciseCollectionView.register(ExerciseInfoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewDidLoad() {
