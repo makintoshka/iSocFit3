@@ -31,6 +31,11 @@ class ExerciseInfoCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        contentView.layer.cornerRadius = 5.0
+        contentView.layer.masksToBounds = true
+        layer.cornerRadius = 5.0
+        layer.masksToBounds = false
+        
         layer.shadowRadius = 5.0
         layer.shadowOpacity = 0.1
         layer.shadowColor = UIColor.black.cgColor

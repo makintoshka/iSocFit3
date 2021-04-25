@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SemiModalViewController
+import Rideau
 
 private let sectionInsets = UIEdgeInsets(
-  top: 0.0,
-  left: 0.0,
-  bottom: 0.0,
-  right: 0.0)
+    top: 0.0,
+    left: 0.0,
+    bottom: 0.0,
+    right: 0.0)
 
 private let reuseIdentifier = "Cell"
 
@@ -24,7 +26,13 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = editButtonItem
+        editButtonItem.image = UIImage(systemName: "square.and.pencil")
+        
+        let addExerciseBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addExerciseAction))
+        
+        self.navigationItem.rightBarButtonItems = [editButtonItem, addExerciseBarButton]
+        
+        
         
         self.collectionView!.register(UINib(nibName: "TrainingCustomCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
@@ -33,6 +41,17 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        
+        self.collectionView.isEditing = editing
+        
+        editButtonItem.image = UIImage(systemName: "square.and.pencil")
+        
+        if self.collectionView.isEditing {
+            editButtonItem.image = UIImage(systemName: "checkmark")
+        }
+        
+        navigationItem.rightBarButtonItem = editButtonItem
+        
         
         let indexPaths = collectionView.indexPathsForVisibleItems
         
@@ -46,8 +65,26 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
     
     // MARK: - Actions
     
-    
-    
+    @objc func addExerciseAction(){
+        
+        let exerciseListVC = (storyboard?.instantiateViewController(identifier: "exerciseListVC"))
+        
+        exerciseListVC?.modalPresentationStyle = .custom
+        
+        let rideuController = RideauViewController(
+            bodyViewController: exerciseListVC!,
+            configuration: {
+                var config = RideauView.Configuration()
+                config.snapPoints = [.pointsFromBottom(200), .fraction(0.5), .fraction(0.8), .fraction(1)]
+                return config
+        }(),
+            initialSnapPoint: .pointsFromBottom(200),
+            resizingOption: .noResize)
+        
+        present(rideuController, animated: true, completion: nil)
+        
+        
+    }
     
     // MARK: UICollectionViewDataSource
 
@@ -114,6 +151,8 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        let cellWidth = (view.frame.width - sectionInsets.left * 8)/4
+        
         return CGSize(width: collectionView.frame.width/4, height: collectionView.frame.width/4)
     }
     
@@ -137,37 +176,9 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        performSegue(withIdentifier: "openExerciseInfo", sender: self)
+        let exerciseInfoVC = storyboard?.instantiateViewController(identifier: "exerciseInfoVC")
+        navigationController?.pushViewController(exerciseInfoVC!, animated: true)
     }
-    
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
 }
+

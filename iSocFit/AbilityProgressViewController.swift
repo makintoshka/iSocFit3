@@ -8,27 +8,136 @@
 import UIKit
 import Charts
 
-var abilityChangeDate = ["20.01.2021", "21.01.2021", "22.01.2021", "23.01.2021", "24.01.2021", "25.01.2021"]
-var abilityValues = [55.5, 56.7, 57.8, 59.0, 60.5, 63.5]
-
-class AbilityProgressViewController: UITableViewController {
+class AbilityProgressViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
         
+    private var _abilityKey: String = ""
+    
+    
+    public var abilityKey: String{
+        get {
+            return _abilityKey
+        }
+        set {
+            _abilityKey = newValue
+        }
+    }
+    
+    
+    
     @IBOutlet var progressLineChart: LineChartView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getAbilities()
         
         
-        customizeChart(dataPoints: abilityChangeDate, values: abilityValues.map({ Double($0)
-            
-        }))
         
-
+        let addBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addValueAction))
+        
+        editButtonItem.image = UIImage(systemName: "square.and.pencil")
+        
+        navigationItem.rightBarButtonItems = [editButtonItem, addBarButton]
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+    }
+    
+    //MARK: - API
+    
+    func getAbilities(){
+        
+        let manager = ServerManager.sharedManager
+        
+        manager.getAbilityValues(abilityKey: abilityKey) { [self] (abilityValues, error) in
+            if (abilityValues != nil){
+                
+                var tmp: NSMutableArray = []
+                
+                for value in abilityValues! {
+                    
+                    let currentValue = value as! NSDictionary
+                    let id = currentValue.object(forKey: "userStatsId")
+                    let tmpValue = currentValue.object(forKey: "value")
+                    let tmpDate = currentValue.object(forKey: "createdAt")
+                    
+                    let key = currentValue.object(forKey: "key")
+                    let someValue = Ability(id: id as! String, key: key as! String, value: tmpValue as! Int, createdAt: tmpDate as! String)
+                    
+                    tmp.add(someValue)
+                    
+                    
+                    print("\(someValue)")
+                    
+                    print("________________-")
+                }
+                print(tmp)
+                UserModel.abilities[abilityKey] = tmp as? NSMutableArray
+                tableView.reloadData()
+                
+                let dataToChart = UserModel.abilities[abilityKey] as! [Ability]
+                
+                var abilityChangeDate = [String]()
+                var abilityValues = [Double]()
+                
+                dataToChart.forEach { (ability) in
+                    abilityChangeDate.append(ability.createdAt)
+                    abilityValues.append(Double(ability.value))
+                }
+                
+                customizeChart(dataPoints: abilityChangeDate, values: abilityValues.map({ Double($0)
+                    
+                }))
+                
+            } else if (error != nil){
+                
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+                
+            }
+        }
+        
+    }
+    
+    //MARK: - Actions
+    
+    @objc func addValueAction(){
+        
+        let addValueVC = storyboard?.instantiateViewController(identifier: "addAbilityValueVC") as! AddAbilityValueController
+        addValueVC.abilityKey = abilityKey
+        self.navigationController?.pushViewController(addValueVC, animated: true)
+        
+        
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        
+        self.tableView.setEditing(editing, animated: true)
+        
+        editButtonItem.image = UIImage(systemName: "square.and.pencil")
+        
+        if self.tableView.isEditing {
+            editButtonItem.image = UIImage(systemName: "checkmark")
+        }
+        
+        let addBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addValueAction))
+        
+        navigationItem.rightBarButtonItems = [editButtonItem, addBarButton]
+        
+        let indexPaths = tableView.indexPathsForVisibleRows
+        
+        for indexPath in indexPaths! {
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.isEditing = editing
+        }
+        
     }
 
     //MARK: - Functions
@@ -46,7 +155,7 @@ class AbilityProgressViewController: UITableViewController {
       
         var dataEntries: [ChartDataEntry] = []
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+            let dataEntry = ChartDataEntry(x: Double(Int(i)), y: values[i])
           dataEntries.append(dataEntry)
         }
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: "blabla")
@@ -64,65 +173,23 @@ class AbilityProgressViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return abilityChangeDate.count
+        return UserModel.abilities[abilityKey]?.count ?? 0
+        
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let currentAbility = (UserModel.abilities[abilityKey]![indexPath.row]) as! Ability
         
-        cell.textLabel?.text = String(abilityValues[indexPath.row])
+        cell.textLabel?.text = "\(currentAbility.value)"
         cell.textLabel?.textColor = UIColor(red: 48/255.0, green: 49/255.0, blue: 118/255.0, alpha: 1.0)
-        cell.detailTextLabel?.text = abilityChangeDate[indexPath.row]
+        cell.detailTextLabel?.text = currentAbility.createdAt
         cell.detailTextLabel?.textColor = UIColor(red: 194/255.0, green: 197/255.0, blue: 213/255.0, alpha: 1.0)
         
         return cell
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }

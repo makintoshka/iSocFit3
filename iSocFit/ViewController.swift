@@ -8,7 +8,7 @@
 import UIKit
 import SideMenu
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var emailTextField: UITextField!
@@ -16,6 +16,26 @@ class ViewController: UIViewController {
     
     
     @IBAction func actionLogin(){
+        
+        let manager = ServerManager.sharedManager
+        
+        emailTextField.text = "test4@gm.ua"
+        
+        manager.authorizeUser(parameters: NSDictionary(object: emailTextField.text!, forKey: "email" as NSCopying)) { (someDict, error) in
+            if (someDict != nil) {
+                let profileVC = self.storyboard?.instantiateViewController(identifier: "profileInfo")
+                
+                self.navigationController?.pushViewController(profileVC!, animated: true)
+            }
+            else if (error != nil){
+                
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+                
+            }
+        }
+        
         
         
     }
@@ -30,16 +50,12 @@ class ViewController: UIViewController {
         super.loadView()
         
         
-        
-        //let loginController = UIViewController()
-        
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        emailTextField.delegate = self
         
     }
     
@@ -47,6 +63,13 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+        
     }
     
 }

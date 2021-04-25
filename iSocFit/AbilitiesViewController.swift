@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 private let sectionInsets = UIEdgeInsets(
   top: 10.0,
@@ -16,18 +17,35 @@ private let reuseIdentifier = "cell"
 
 var images = ["body-scale.jpg"]
 
-class AbilitiesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+struct Ability: Encodable {
+    let id: String
+    let key: String
+    let value: Int
+    let createdAt: String
+}
+
+class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    override func loadView() {
-        super.loadView()
-        
-        self.navigationItem.setLeftBarButtonItems(nil, animated: true)
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        
-    }
+    @IBOutlet var abilityCollectionView: UICollectionView!
+    @IBOutlet var aboutControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getAbilities()
+        
+        navigationItem.title = "Tony Stark"
+        
+        aboutControl.selectedSegmentIndex = 1;
+        
+        aboutControl.addTarget(self, action: #selector(openProfileInfo(sender:)), for: .valueChanged)
+        
+        abilityCollectionView.dataSource = self
+        abilityCollectionView.delegate = self
+        self.navigationItem.setLeftBarButtonItems(nil, animated: true)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.abilityCollectionView.register(UINib(nibName: "AbilitiesCustomCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        self.abilityCollectionView.allowsSelection = true
         
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
                                             style: .plain,
@@ -37,43 +55,114 @@ class AbilitiesViewController: UICollectionViewController, UICollectionViewDeleg
         menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
         self.navigationItem.leftBarButtonItem = menuBarButton
         
-        //self.collectionView.register(AbilitiesCustomCell(), forCellWithReuseIdentifier: "cell")
-        self.collectionView.register(UINib(nibName: "AbilitiesCustomCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        self.collectionView.allowsSelection = true
+    }
+    
+    //MARK: - API
+    
+    func getAbilities(){
+        
+        let manager = ServerManager.sharedManager
+        
+        manager.getUserAbilities { [self] (userAbilities, error) in
+            if ((userAbilities) != nil){
+                
+                
+                var tmp: [String:NSMutableArray] = [:]
+                
+                for abilities in userAbilities! {
+                    let currentAbility = abilities as! NSDictionary
+                    let name = currentAbility.object(forKey: "key")
+                    let value = currentAbility.object(forKey: "value") as! Int
+                    let id = currentAbility.object(forKey: "userStatsId") as! String
+                    let created = currentAbility.object(forKey: "createdAt") as! String
+                    let category = currentAbility.object(forKey: "statsCategoryId")
+                    let key = currentAbility.object(forKey: "key") as! String
+                    let ability = Ability(id: id, key: key, value: value, createdAt: created)
+                    
+                    
+                    
+                    if (tmp[key] == nil){
+                        tmp[key] = []
+                    }
+                    tmp[key]?.add(ability)
+                    
+                    
+                }
+                
+                UserModel.abilities = tmp
+                abilityCollectionView.reloadData()
+                
+            } else if((error) != nil){
+                
+                
+                
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+                
+            }
+            
+        }
+        
     }
     
     //MARK: - Actions
     
     @objc func openMenuAction(sender: UIBarButtonItem){
         
-        
         let menuVC = storyboard?.instantiateViewController(identifier: "menuViewController")
-        self.navigationController?.pushViewController(menuVC!, animated: true)
         
+        let leftMenuNavigationController = SideMenuNavigationController(rootViewController: menuVC!)
+        leftMenuNavigationController.leftSide = false
+        SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        present(leftMenuNavigationController, animated: true, completion: nil)
     }
 
+    @objc func openProfileInfo(sender: UISegmentedControl){
+        
+        navigationController?.popViewController(animated: true)
+        
+    }
     
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 1
     }
+    
+    private var _dataToView: [Ability] = []
 
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 18
+        _dataToView = []
+        let user = UserModel.currentUser
+        
+        for i in UserModel.abilities{
+            _dataToView.append(i.value[0] as! Ability)
+        }
+        _dataToView.sort { (a, b) -> Bool in
+            return a.createdAt > b.createdAt
+        }
+        print(UserModel.abilities.count)
+        
+        return _dataToView.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //var cell = AbilitiesCustomCell()
+        let user = UserModel.currentUser
         
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AbilitiesCustomCell
+    
+        cell.abilityTitleForCell.text = _dataToView[indexPath.row].key
+        cell.abilityValueLabel.text = "\(_dataToView[indexPath.row].value)"
+       
         
-        
-        
+       
         return cell
     }
     
@@ -82,21 +171,21 @@ class AbilitiesViewController: UICollectionViewController, UICollectionViewDeleg
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(!(searchBar.text?.isEmpty)!){
             //reload your data source if necessary
-            self.collectionView?.reloadData()
+            self.abilityCollectionView?.reloadData()
         }
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if(searchText.isEmpty){
             //reload your data source if necessary
-            self.collectionView?.reloadData()
+            self.abilityCollectionView?.reloadData()
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
         if (kind == UICollectionView.elementKindSectionHeader) {
-            let headerView:UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "abilitySearch", for: indexPath)
+            let headerView:UICollectionReusableView =  abilityCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "abilitySearch", for: indexPath)
 
                  return headerView
              }
@@ -129,9 +218,12 @@ class AbilitiesViewController: UICollectionViewController, UICollectionViewDeleg
     
     // MARK: UICollectionViewDelegate
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "openAbilityProgress", sender: self)
+        let abilityProgressVC = self.storyboard?.instantiateViewController(identifier: "abilityProgressVC") as! AbilityProgressViewController
+        abilityProgressVC.abilityKey = _dataToView[indexPath.row].key
+        self.navigationController?.pushViewController(abilityProgressVC, animated: true)
+        
         
     }
     

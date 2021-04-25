@@ -6,17 +6,26 @@
 //
 
 import UIKit
+import SideMenu
+
+
+struct Workout: Encodable {
+    let id: String
+    let about: String
+    let createdAt: String
+    let name: String
+}
 
 class WorkoutsViewController: UITableViewController {
         
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getWorkouts()
+        
         self.navigationItem.title = "Workouts"
         
-        self.navigationItem.rightBarButtonItem = editButtonItem
+        //self.navigationItem.rightBarButtonItem = editButtonItem
         
 //        let editBarButton = UIBarButtonItem(barButtonSystemItem: .edit,
 //                                            target: self,
@@ -32,12 +41,77 @@ class WorkoutsViewController: UITableViewController {
         //self.navigationItem.rightBarButtonItem = editButtonItem
         
         self.tableView.register(UINib(nibName: "WorkoutsCustomCell", bundle: nil), forCellReuseIdentifier: "workoutCell")
+        
+        let addMenuBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addWorkoutAction))
+        
+        editButtonItem.image = UIImage(systemName: "square.and.pencil")
+        
+        self.navigationItem.rightBarButtonItems = [editButtonItem, addMenuBarButton]
     }
 
+    //MARK: - API
+    
+    func getWorkouts(){
+        
+        let manager = ServerManager.sharedManager
+        
+        manager.getWorkouts { (workouts, error) in
+            if (workouts != nil){
+                print("________________________")
+                print(workouts)
+                
+                
+                var tmp: [String:Workout] = [:]
+                
+                for workout in workouts! {
+                    let currentWorkout = workout as! NSDictionary
+                    let name = currentWorkout.object(forKey: "name") as! String
+                    let id = currentWorkout.object(forKey: "workoutId") as! String
+                    let about = currentWorkout.object(forKey: "about") as! String
+                    let created = currentWorkout.object(forKey: "createdAt") as! String
+                    let tmpWorkout = Workout(id: id, about: about, createdAt: created, name: name)
+                    
+                    
+                    
+                    if (tmp[id] == nil){
+                        tmp[id] = tmpWorkout
+                    }
+                    tmp[id] = tmpWorkout
+                    
+                    
+                }
+                
+                UserModel.workouts = tmp
+                self.tableView.reloadData()
+                
+                
+            } else if (error != nil){
+                
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+                
+            }
+            
+        }
+        
+    }
+    
+    
     // MARK: - Actions
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        
+        self.tableView.setEditing(editing, animated: true)
+        
+        editButtonItem.image = UIImage(systemName: "square.and.pencil")
+        
+        if self.tableView.isEditing {
+            editButtonItem.image = UIImage(systemName: "checkmark")
+        }
+        
+        navigationItem.rightBarButtonItem = editButtonItem
         
         let indexPaths = tableView.indexPathsForVisibleRows
         
@@ -49,14 +123,25 @@ class WorkoutsViewController: UITableViewController {
     
     @objc func openMenuAction(sender: UIBarButtonItem){
         
-        
         let menuVC = storyboard?.instantiateViewController(identifier: "menuViewController")
-        self.navigationController?.pushViewController(menuVC!, animated: true)
+        
+        let leftMenuNavigationController = SideMenuNavigationController(rootViewController: menuVC!)
+        leftMenuNavigationController.leftSide = false
+        SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        present(leftMenuNavigationController, animated: true, completion: nil)
+        
+    }
+    
+    @objc func addWorkoutAction(){
         
     }
     
     // MARK: - Table view data source
 
+    private var dataToView: [Workout] = []
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
     }
@@ -68,14 +153,21 @@ class WorkoutsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        for workout in UserModel.workouts.values {
+            dataToView.append(workout) as! Workout
+        }
+        return dataToView.count
     }
-
+    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutsCustomCell
 
-        // Configure the cell...
+        cell.workoutDateForCell.text = dataToView[indexPath.row].createdAt
+        cell.workoutNotesLabel.text = dataToView[indexPath.row].about
+        cell.workoutTitle.text = dataToView[indexPath.row].name
+        
 
         return cell
     }
@@ -85,7 +177,8 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        performSegue(withIdentifier: "openConstructor", sender: self)
+        let exerciseVC = storyboard?.instantiateViewController(identifier: "trainingVC")
+        navigationController?.pushViewController(exerciseVC!, animated: true)
         
     }
     

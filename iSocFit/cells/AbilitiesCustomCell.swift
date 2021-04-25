@@ -13,6 +13,14 @@ class AbilitiesCustomCell: UICollectionViewCell {
     @IBOutlet var abilityTitleForCell: UILabel!
     @IBOutlet var abilityValueLabel: UILabel!
     
+    var isInEditingMode: Bool = false {
+        
+        didSet{
+            //deleteButton.isHidden = !isInEditingMode
+        }
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         

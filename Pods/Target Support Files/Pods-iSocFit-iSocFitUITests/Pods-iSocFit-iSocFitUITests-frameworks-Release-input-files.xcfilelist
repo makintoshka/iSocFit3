@@ -1,3 +1,8 @@
 ${PODS_ROOT}/Target Support Files/Pods-iSocFit-iSocFitUITests/Pods-iSocFit-iSocFitUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/Rideau/Rideau.framework
+${BUILT_PRODUCTS_DIR}/SemiModalViewController/SemiModalViewController.framework
 ${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
+${BUILT_PRODUCTS_DIR}/TransitionPatch/TransitionPatch.framework
