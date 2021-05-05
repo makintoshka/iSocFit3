@@ -86,7 +86,6 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
                     }
                     tmp[key]?.add(ability)
                     
-                    
                 }
                 
                 UserModel.abilities = tmp

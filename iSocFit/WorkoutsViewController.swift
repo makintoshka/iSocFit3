@@ -8,14 +8,6 @@
 import UIKit
 import SideMenu
 
-
-struct Workout: Encodable {
-    let id: String
-    let about: String
-    let createdAt: String
-    let name: String
-}
-
 class WorkoutsViewController: UITableViewController {
         
     override func viewDidLoad() {
@@ -61,28 +53,28 @@ class WorkoutsViewController: UITableViewController {
                 print(workouts)
                 
                 
-                var tmp: [String:Workout] = [:]
+                var tmp: [String:WorkoutModel] = [:]
                 
                 for workout in workouts! {
+                    
                     let currentWorkout = workout as! NSDictionary
                     let name = currentWorkout.object(forKey: "name") as! String
                     let id = currentWorkout.object(forKey: "workoutId") as! String
                     let about = currentWorkout.object(forKey: "about") as! String
                     let created = currentWorkout.object(forKey: "createdAt") as! String
-                    let tmpWorkout = Workout(id: id, about: about, createdAt: created, name: name)
                     
+                    let tmpWorkout = WorkoutModel(id: id, about: about, created: created, name: name)
                     
-                    
-                    if (tmp[id] == nil){
-                        tmp[id] = tmpWorkout
-                    }
                     tmp[id] = tmpWorkout
-                    
                     
                 }
                 
+                print("________________________")
+                print(tmp)
                 UserModel.workouts = tmp
+                tmp = [:]
                 self.tableView.reloadData()
+                
                 
                 
             } else if (error != nil){
@@ -136,11 +128,17 @@ class WorkoutsViewController: UITableViewController {
     
     @objc func addWorkoutAction(){
         
+        
+        let addWorkoutVC = storyboard?.instantiateViewController(identifier: "addWorkoutVC")
+        self.navigationController?.pushViewController(addWorkoutVC!, animated: true)
+        
+        
+        
     }
     
     // MARK: - Table view data source
 
-    private var dataToView: [Workout] = []
+    private var dataToView: [WorkoutModel] = []
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
@@ -153,10 +151,17 @@ class WorkoutsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        dataToView = []
+        
         for workout in UserModel.workouts.values {
-            dataToView.append(workout) as! Workout
+            print("ASDASDASDASDA")
+            print(workout)
+            dataToView.append(workout)
         }
         return dataToView.count
+        
+        
     }
     
     
@@ -168,6 +173,9 @@ class WorkoutsViewController: UITableViewController {
         cell.workoutNotesLabel.text = dataToView[indexPath.row].about
         cell.workoutTitle.text = dataToView[indexPath.row].name
         
+        //print("____________________________")
+        //print(dataToView[indexPath.row])
+        
 
         return cell
     }
@@ -177,8 +185,9 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let exerciseVC = storyboard?.instantiateViewController(identifier: "trainingVC")
-        navigationController?.pushViewController(exerciseVC!, animated: true)
+        let exerciseVC = storyboard?.instantiateViewController(identifier: "trainingVC") as! TrainingViewController
+        exerciseVC.workoutId = dataToView[indexPath.row].id
+        navigationController?.pushViewController(exerciseVC, animated: true)
         
     }
     

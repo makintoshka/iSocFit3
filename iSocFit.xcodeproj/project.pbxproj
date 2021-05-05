@@ -32,13 +32,12 @@
 		CE54396A25E4125400C98478 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54396825E4125400C98478 /* MenuViewController.swift */; };
 		CE54396B25E4125400C98478 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54396925E4125400C98478 /* MenuViewController.xib */; };
 		CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397725E416AB00C98478 /* MainMenu.jpg */; };
-		CE54397D25E4352700C98478 /* body-scale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397C25E4352700C98478 /* body-scale.jpg */; };
+		CE54397D25E4352700C98478 /* weight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54397C25E4352700C98478 /* weight.jpg */; };
 		CE54399225E962FE00C98478 /* Vector.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE54399125E962FE00C98478 /* Vector.jpg */; };
 		CE5439A225EBC70400C98478 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439A025EBC70400C98478 /* WorkoutsViewController.swift */; };
 		CE5439A325EBC70400C98478 /* WorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439A125EBC70400C98478 /* WorkoutsViewController.xib */; };
 		CE5439A925EBC8A500C98478 /* WorkoutsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439A725EBC8A500C98478 /* WorkoutsCustomCell.swift */; };
 		CE5439AA25EBC8A500C98478 /* WorkoutsCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439A825EBC8A500C98478 /* WorkoutsCustomCell.xib */; };
-		CE5439AF25EBCBE800C98478 /* clock.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE5439AE25EBCBE800C98478 /* clock.jpg */; };
 		CE5439B425EBCC9900C98478 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5439B325EBCC9900C98478 /* clock.png */; };
 		CE5439BA25ED136200C98478 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5439B825ED136200C98478 /* TrainingViewController.swift */; };
 		CE5439BB25ED136200C98478 /* TrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439B925ED136200C98478 /* TrainingViewController.xib */; };
@@ -46,7 +45,6 @@
 		CE5439C225ED144D00C98478 /* TrainingCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5439C025ED144D00C98478 /* TrainingCustomCell.xib */; };
 		CE5439EA25F164EC00C98478 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5439E925F164EC00C98478 /* list.png */; };
 		CE5439F725F1672D00C98478 /* list (1).png in Resources */ = {isa = PBXBuildFile; fileRef = CE5439F625F1672D00C98478 /* list (1).png */; };
-		CE543A0425F1984900C98478 /* weight-scale (1).png in Resources */ = {isa = PBXBuildFile; fileRef = CE543A0325F1984900C98478 /* weight-scale (1).png */; };
 		CE543A0925F22AE600C98478 /* AbilitySearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A0825F22AE600C98478 /* AbilitySearchCollectionReusableView.swift */; };
 		CE543A1625F4C12500C98478 /* AbilityProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A1425F4C12500C98478 /* AbilityProgressViewController.swift */; };
 		CE543A1725F4C12500C98478 /* AbilityProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A1525F4C12500C98478 /* AbilityProgressViewController.xib */; };
@@ -56,6 +54,9 @@
 		CE543A3325FF9F8300C98478 /* ExerciseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */; };
 		CE543A3425FF9F8300C98478 /* ExerciseInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */; };
 		CE543A4B2605379A00C98478 /* Group_68__1_-removebg-preview (1).png in Resources */ = {isa = PBXBuildFile; fileRef = CE543A4A2605379A00C98478 /* Group_68__1_-removebg-preview (1).png */; };
+		CE55409A2641E1EF00A2D3D8 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5540992641E1EF00A2D3D8 /* WorkoutModel.swift */; };
+		CE55409C2641EADF00A2D3D8 /* weight.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55409B2641EADE00A2D3D8 /* weight.png */; };
+		CE55409E2642B74A00A2D3D8 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE55409D2642B74A00A2D3D8 /* AddWorkoutViewController.swift */; };
 		CEA938892617256800433F6C /* ExerciseListCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA938872617256800433F6C /* ExerciseListCustomCell.swift */; };
 		CEA9388A2617256800433F6C /* ExerciseListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA938882617256800433F6C /* ExerciseListCustomCell.xib */; };
 		CEA9388F261728C800433F6C /* ExercisesListSearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9388E261728C800433F6C /* ExercisesListSearchCollectionReusableView.swift */; };
@@ -64,6 +65,8 @@
 		CED4EEAD262DB24E004D349C /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4EEAC262DB24E004D349C /* ImagePickerManager.swift */; };
 		CED4EEBD26319E0B004D349C /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CED4EEBB26319E0A004D349C /* arrow_up.png */; };
 		CED4EEBE26319E0B004D349C /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = CED4EEBC26319E0B004D349C /* arrow_down.png */; };
+		CED4EED626414AE0004D349C /* height.png in Resources */ = {isa = PBXBuildFile; fileRef = CED4EED526414AE0004D349C /* height.png */; };
+		CED4EEDB26414CF2004D349C /* percent.png in Resources */ = {isa = PBXBuildFile; fileRef = CED4EEDA26414CF2004D349C /* percent.png */; };
 		D4DEA2D48693D547523598A5 /* Pods_iSocFit_iSocFitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58EA9E42951EE0A23D0FF3A /* Pods_iSocFit_iSocFitUITests.framework */; };
 		E9A2ABCEDA65173E9D33C335 /* Pods_iSocFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */; };
 /* End PBXBuildFile section */
@@ -124,13 +127,12 @@
 		CE54396825E4125400C98478 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		CE54396925E4125400C98478 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		CE54397725E416AB00C98478 /* MainMenu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MainMenu.jpg; sourceTree = "<group>"; };
-		CE54397C25E4352700C98478 /* body-scale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "body-scale.jpg"; sourceTree = "<group>"; };
+		CE54397C25E4352700C98478 /* weight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = weight.jpg; sourceTree = "<group>"; };
 		CE54399125E962FE00C98478 /* Vector.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Vector.jpg; sourceTree = "<group>"; };
 		CE5439A025EBC70400C98478 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
 		CE5439A125EBC70400C98478 /* WorkoutsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutsViewController.xib; sourceTree = "<group>"; };
 		CE5439A725EBC8A500C98478 /* WorkoutsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsCustomCell.swift; sourceTree = "<group>"; };
 		CE5439A825EBC8A500C98478 /* WorkoutsCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutsCustomCell.xib; sourceTree = "<group>"; };
-		CE5439AE25EBCBE800C98478 /* clock.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clock.jpg; sourceTree = "<group>"; };
 		CE5439B325EBCC9900C98478 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		CE5439B825ED136200C98478 /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		CE5439B925ED136200C98478 /* TrainingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainingViewController.xib; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 		CE5439C025ED144D00C98478 /* TrainingCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainingCustomCell.xib; sourceTree = "<group>"; };
 		CE5439E925F164EC00C98478 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		CE5439F625F1672D00C98478 /* list (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list (1).png"; sourceTree = "<group>"; };
-		CE543A0325F1984900C98478 /* weight-scale (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight-scale (1).png"; sourceTree = "<group>"; };
 		CE543A0825F22AE600C98478 /* AbilitySearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitySearchCollectionReusableView.swift; sourceTree = "<group>"; };
 		CE543A1425F4C12500C98478 /* AbilityProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityProgressViewController.swift; sourceTree = "<group>"; };
 		CE543A1525F4C12500C98478 /* AbilityProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbilityProgressViewController.xib; sourceTree = "<group>"; };
@@ -148,6 +149,9 @@
 		CE543A3125FF9F8300C98478 /* ExerciseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoViewController.swift; sourceTree = "<group>"; };
 		CE543A3225FF9F8300C98478 /* ExerciseInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseInfoViewController.xib; sourceTree = "<group>"; };
 		CE543A4A2605379A00C98478 /* Group_68__1_-removebg-preview (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group_68__1_-removebg-preview (1).png"; sourceTree = "<group>"; };
+		CE5540992641E1EF00A2D3D8 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		CE55409B2641EADE00A2D3D8 /* weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weight.png; sourceTree = "<group>"; };
+		CE55409D2642B74A00A2D3D8 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		CEA938872617256800433F6C /* ExerciseListCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCustomCell.swift; sourceTree = "<group>"; };
 		CEA938882617256800433F6C /* ExerciseListCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseListCustomCell.xib; sourceTree = "<group>"; };
 		CEA9388E261728C800433F6C /* ExercisesListSearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesListSearchCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		CED4EEAC262DB24E004D349C /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		CED4EEBB26319E0A004D349C /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
 		CED4EEBC26319E0B004D349C /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
+		CED4EED526414AE0004D349C /* height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = height.png; sourceTree = "<group>"; };
+		CED4EEDA26414CF2004D349C /* percent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = percent.png; sourceTree = "<group>"; };
 		E3812E6F4E7AC32690EC66C6 /* Pods_iSocFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSocFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -253,6 +259,8 @@
 				CEA938942629BED500433F6C /* AddAbilityValueController.swift */,
 				CEA938A62629E3F200433F6C /* ExercisesListViewController.swift */,
 				CED4EEAC262DB24E004D349C /* ImagePickerManager.swift */,
+				CE5540992641E1EF00A2D3D8 /* WorkoutModel.swift */,
+				CE55409D2642B74A00A2D3D8 /* AddWorkoutViewController.swift */,
 			);
 			path = iSocFit;
 			sourceTree = "<group>";
@@ -278,17 +286,18 @@
 		CE54395325E3C2D300C98478 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				CE55409B2641EADE00A2D3D8 /* weight.png */,
+				CED4EEDA26414CF2004D349C /* percent.png */,
+				CED4EED526414AE0004D349C /* height.png */,
 				CED4EEBB26319E0A004D349C /* arrow_up.png */,
 				CED4EEBC26319E0B004D349C /* arrow_down.png */,
 				CE543A4A2605379A00C98478 /* Group_68__1_-removebg-preview (1).png */,
 				CE543A1B25F55DFB00C98478 /* refresh.png */,
-				CE543A0325F1984900C98478 /* weight-scale (1).png */,
 				CE5439F625F1672D00C98478 /* list (1).png */,
 				CE5439E925F164EC00C98478 /* list.png */,
 				CE5439B325EBCC9900C98478 /* clock.png */,
-				CE5439AE25EBCBE800C98478 /* clock.jpg */,
 				CE54399125E962FE00C98478 /* Vector.jpg */,
-				CE54397C25E4352700C98478 /* body-scale.jpg */,
+				CE54397C25E4352700C98478 /* weight.jpg */,
 				CE54397725E416AB00C98478 /* MainMenu.jpg */,
 				CE54394425E194F300C98478 /* 7 (2).jpg */,
 				CE54393725E1723400C98478 /* User image.jpg */,
@@ -439,6 +448,7 @@
 				CE5439B425EBCC9900C98478 /* clock.png in Resources */,
 				CE5439AA25EBC8A500C98478 /* WorkoutsCustomCell.xib in Resources */,
 				CE54397825E416AB00C98478 /* MainMenu.jpg in Resources */,
+				CED4EED626414AE0004D349C /* height.png in Resources */,
 				CE54392C25E04D1100C98478 /* dumbbell.png in Resources */,
 				CE54399225E962FE00C98478 /* Vector.jpg in Resources */,
 				CE543A4B2605379A00C98478 /* Group_68__1_-removebg-preview (1).png in Resources */,
@@ -450,21 +460,21 @@
 				CE54394525E194F300C98478 /* 7 (2).jpg in Resources */,
 				CE5438F025DE8EB800C98478 /* Assets.xcassets in Resources */,
 				CE54396B25E4125400C98478 /* MenuViewController.xib in Resources */,
-				CE5439AF25EBCBE800C98478 /* clock.jpg in Resources */,
+				CED4EEDB26414CF2004D349C /* percent.png in Resources */,
 				CE5439EA25F164EC00C98478 /* list.png in Resources */,
 				CE5438EE25DE8EB600C98478 /* Main.storyboard in Resources */,
 				CED4EEBE26319E0B004D349C /* arrow_down.png in Resources */,
 				CEA9388A2617256800433F6C /* ExerciseListCustomCell.xib in Resources */,
 				CE54393325E16C5B00C98478 /* ProfileInfoTableViewController.xib in Resources */,
 				CE5439A325EBC70400C98478 /* WorkoutsViewController.xib in Resources */,
-				CE543A0425F1984900C98478 /* weight-scale (1).png in Resources */,
 				CE543A1C25F55DFC00C98478 /* refresh.png in Resources */,
 				CE54392725DEA08500C98478 /* dumbbell.jpg in Resources */,
+				CE55409C2641EADF00A2D3D8 /* weight.png in Resources */,
 				CE543A1725F4C12500C98478 /* AbilityProgressViewController.xib in Resources */,
 				CE5439F725F1672D00C98478 /* list (1).png in Resources */,
 				CE543A2D25FF9F5300C98478 /* ExerciseInfoCell.xib in Resources */,
 				CED4EEBD26319E0B004D349C /* arrow_up.png in Resources */,
-				CE54397D25E4352700C98478 /* body-scale.jpg in Resources */,
+				CE54397D25E4352700C98478 /* weight.jpg in Resources */,
 				CE543A3425FF9F8300C98478 /* ExerciseInfoViewController.xib in Resources */,
 				CE54393825E1723400C98478 /* User image.jpg in Resources */,
 			);
@@ -595,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA938A72629E3F200433F6C /* ExercisesListViewController.swift in Sources */,
+				CE55409A2641E1EF00A2D3D8 /* WorkoutModel.swift in Sources */,
 				CE39EDB92613C9360058B1F4 /* ServerManager.swift in Sources */,
 				CE5439BA25ED136200C98478 /* TrainingViewController.swift in Sources */,
 				CEA938892617256800433F6C /* ExerciseListCustomCell.swift in Sources */,
@@ -606,6 +617,7 @@
 				CE54396A25E4125400C98478 /* MenuViewController.swift in Sources */,
 				CED4EEAD262DB24E004D349C /* ImagePickerManager.swift in Sources */,
 				CE543A0925F22AE600C98478 /* AbilitySearchCollectionReusableView.swift in Sources */,
+				CE55409E2642B74A00A2D3D8 /* AddWorkoutViewController.swift in Sources */,
 				CE543A3325FF9F8300C98478 /* ExerciseInfoViewController.swift in Sources */,
 				CE543A2C25FF9F5300C98478 /* ExerciseInfoCell.swift in Sources */,
 				CE5439A225EBC70400C98478 /* WorkoutsViewController.swift in Sources */,

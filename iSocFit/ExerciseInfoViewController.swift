@@ -14,13 +14,6 @@ private let sectionInsets = UIEdgeInsets(
   bottom: 5.0,
   right: 5.0)
 
-struct Exercise: Encodable {
-    let id: String
-    let key: String
-    let value: Int
-    let createdAt: String
-}
-
 class ExerciseInfoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     @IBOutlet var exerciseCollectionView: UICollectionView!

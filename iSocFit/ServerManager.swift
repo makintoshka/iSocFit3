@@ -15,7 +15,7 @@ class ServerManager: NSObject {
     
     private override init() {}
     
-    private static var url: String = String("https://b0d8f4d8e600.ngrok.io")
+    private static var url: String = String("https://06f104b41ca2.ngrok.io")
     private static var token: String = ""
 
     
@@ -334,6 +334,27 @@ class ServerManager: NSObject {
     func getWorkouts(completionHandler: @escaping (NSArray?, NSError?) -> ()){
         
         let currentUrl = ServerManager.url + "/api/workout"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)"
+        ]
+        
+        AF.request(currentUrl,
+                   headers: headers).responseJSON { (responseJSON) in
+                    switch responseJSON.result{
+                    case .success(let json):
+                        completionHandler(json as! NSArray, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as! NSError)
+                    }
+                   }
+        
+    }
+    
+    func getWorkoutExercises(id: String, completionHandler: @escaping (NSArray?, NSError?) -> ()){
+        
+        
+        let currentUrl = ServerManager.url + "/api/workout/" + id + "/exercises"
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(ServerManager.token)"

@@ -77,9 +77,9 @@
             <connections>
                 <outlet property="timeIconForCell" destination="JQw-aT-Orx" id="Sg0-Or-bAs"/>
                 <outlet property="workoutDateForCell" destination="jtg-xL-Vil" id="rK4-Ml-Pjt"/>
-                <outlet property="workoutNotesLabel" destination="mKb-F7-rY7" id="uQa-gg-A1K"/>
+                <outlet property="workoutNotesLabel" destination="i0E-9f-ht1" id="gbg-e8-UXn"/>
                 <outlet property="workoutTimeForCell" destination="2hm-wn-uHq" id="u56-69-9aa"/>
-                <outlet property="workoutTitle" destination="M8O-AE-dlq" id="Z2B-6U-7Ae"/>
+                <outlet property="workoutTitle" destination="CjX-Ro-Pqa" id="gIV-Vf-sJd"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
         </tableViewCell>

@@ -29,48 +29,7 @@ class WorkoutsCustomCell: UITableViewCell {
         
     }
     
-    var workoutNameForCell: UILabel = {
-        
-        var workoutName = UILabel()
-        workoutName.text = "Biceps"
-        workoutName.font = UIFont (name: "System", size: 7.0)
-        workoutName.textColor = .white
-        workoutName.backgroundColor = UIColor(red: 99, green: 132, blue: 228, alpha: 100)
-        workoutName.tintColor = UIColor(red: 99, green: 132, blue: 228, alpha: 100)
-        workoutName.textAlignment = .left
-        workoutName.frame.size = CGSize(width: 50, height: 20)
-        
-        return workoutName
-        
-    } ()
     
-    var workoutNotesTextForCell: UILabel = {
-        
-        var workoutNotes = UILabel()
-        
-        workoutNotes.text = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout... "
-        
-        workoutNotes.font = UIFont(name: "System", size: 7.0)
-        workoutNotes.textColor = .white
-        workoutNotes.backgroundColor = UIColor(red: 99, green: 132, blue: 228, alpha: 100)
-        workoutNotes.tintColor = UIColor(red: 99, green: 132, blue: 228, alpha: 100)
-        workoutNotes.textAlignment = .left
-        workoutNotes.frame.size = CGSize(width: 215, height: 40)
-        workoutNotes.numberOfLines = 6
-        
-        return workoutNotes
-        
-    } ()
-    
-    var separatorForCell: UIView = {
-        
-        var separatorView = UIView()
-        
-        separatorView.backgroundColor = .white
-        separatorView.frame.size = CGSize(width: 1.0, height: 70.0)
-        
-        return separatorView
-    } ()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         

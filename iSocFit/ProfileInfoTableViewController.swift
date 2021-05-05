@@ -61,6 +61,7 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         self.navigationItem.rightBarButtonItem = editButtonItem
         
         
+        
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -116,6 +117,7 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         
         return true
     }
+    
    
     //MARK: - API
     

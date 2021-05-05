@@ -78,20 +78,6 @@ class AddAbilityValueController: UITableViewController{
     
     //MARK: - Actions
     
-//    @objc func openMenuAction(sender: UIBarButtonItem){
-//
-//        //let loginVC = ViewController()
-//        let menuVC = self.storyboard?.instantiateViewController(identifier: "menuViewController")
-//
-//        let leftMenuNavigationController = SideMenuNavigationController(rootViewController: menuVC!)
-//        leftMenuNavigationController.leftSide = false
-//        SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
-//        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
-//        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-//        present(leftMenuNavigationController, animated: true, completion: nil)
-//
-//    }
-    
     @objc func addAction(){
         
         let manager = ServerManager.sharedManager

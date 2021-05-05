@@ -19,7 +19,7 @@ class UserModel: NSObject{
     static var phoneNumber: String = ""
     static var userName: String = ""
     static var abilities: [String:NSMutableArray] = [:]
-    static var workouts: [String:Workout] = [:]
+    static var workouts: [String:WorkoutModel] = [:]
     
     
     override init(){

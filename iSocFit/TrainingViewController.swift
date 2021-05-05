@@ -9,6 +9,15 @@ import UIKit
 import SemiModalViewController
 import Rideau
 
+struct Exercise {
+    let repeatsNumber: Int
+    let setsNumber: Int
+    let duration: Int
+    let name: String
+    let calories: Int
+    let weight: Double
+}
+
 private let sectionInsets = UIEdgeInsets(
     top: 0.0,
     left: 0.0,
@@ -19,12 +28,22 @@ private let reuseIdentifier = "Cell"
 
 class TrainingViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    override func loadView() {
-        super.loadView()
+    private var _workoutId: String = ""
+    
+    
+    public var workoutId: String{
+        get {
+            return _workoutId
+        }
+        set {
+            _workoutId = newValue
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getExercises()
         
         editButtonItem.image = UIImage(systemName: "square.and.pencil")
         
@@ -60,6 +79,30 @@ class TrainingViewController: UICollectionViewController, UICollectionViewDelega
             
             cell.isInEditingMode = editing
         }
+        
+    }
+    
+    //MARK: - API
+    
+    func getExercises(){
+        
+        let manager = ServerManager.sharedManager
+        
+        manager.getWorkoutExercises(id: workoutId) { exercises, error in
+            if (exercises != nil){
+                print("___________________________________________")
+                print(exercises!)
+            } else if (error != nil){
+                
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+            }
+            
+        }
+        
+        
+        
         
     }
     

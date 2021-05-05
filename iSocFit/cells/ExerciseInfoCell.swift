@@ -16,7 +16,7 @@ class ExerciseInfoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        
+       
         
     }
     
@@ -41,7 +41,7 @@ class ExerciseInfoCell: UICollectionViewCell {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5)
         
-        
+        iconImage.image = UIImage(named: "weight.png")
         
         
         
