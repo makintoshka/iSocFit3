@@ -15,21 +15,93 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     let categoryPickerDelegate = CategoryPickerDelegate()
     
+    private var _workoutId: String = ""
+    
+    
+    public var workoutId: String{
+        get {
+            return _workoutId
+        }
+        set {
+            _workoutId = newValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        configNavBarAndFields()
+        
+    }
+    
+    //MARK: - Config
+    
+    func configNavBarAndFields(){
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Title Color"),
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 25)
+        ]
+        
         nameTextField.delegate = self
         aboutTextView.delegate = self
         
         categoryPicker.delegate = categoryPickerDelegate
         categoryPicker.dataSource = categoryPickerDelegate
         
-        let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addAction))
+        if (workoutId != "") {
+            
+            self.navigationItem.title = "Change workout"
+            
+            nameTextField.text = UserModel.workouts["\(workoutId)"]?.name
+            aboutTextView.text = UserModel.workouts["\(workoutId)"]?.about
+            
+            let saveBarButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveAction))
+            
+            self.navigationItem.rightBarButtonItem = saveBarButton
+        } else {
+            
+            self.navigationItem.title = "Add new workout"
+            
+            let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addAction))
+            
+            nameTextField.text = ""
+            aboutTextView.text = ""
+            
+            self.navigationItem.rightBarButtonItem = addBarButton
+            
+        }
         
-        self.navigationItem.rightBarButtonItem = addBarButton
     }
     
 //MARK: - Actions
+    
+    @objc func saveAction(){
+        
+        let manager = ServerManager.sharedManager
+        
+        let params: NSDictionary = [
+            "name":nameTextField.text ?? "",
+            "about":self.aboutTextView.text ?? "",
+            "workoutId":self.workoutId
+        ]
+        
+        manager.updateWorkout(parameters: params) { jsonDict, error in
+            
+            if (jsonDict != nil){
+                
+                self.navigationController?.popViewController(animated: true)
+                
+            } else if (error != nil){
+                
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+        
+            }
+        }
+        
+    }
     
     @objc func addAction(){
         
@@ -38,16 +110,30 @@ class AddWorkoutViewController: UIViewController, UITextFieldDelegate, UITextVie
         let params = [
             "name":nameTextField.text,
             "about":aboutTextView.text,
-            "categoryId": "00fe3f17-4bff-427e-83b1-a76d28018c75"
-        ] as [String : Any]
+            
+        ] as! [String : String]
         
-        manager.addAbility(parameters: params as NSDictionary, abilityKey: TypePickerDelegate.selectedType) { (result, error) in
-            if (error != nil){
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+        manager.addWorkout(parameters: params as NSDictionary) { resultDict, error in
+            if (resultDict != nil){
+                
+                let newWorkout = WorkoutModel(id: resultDict?.object(forKey: "workoutId") as? String ?? "",
+                                              about: resultDict?.object(forKey: "about") as? String ?? "",
+                                              created: resultDict?.object(forKey: "createdAt") as? String ?? "",
+                                              name: resultDict?.object(forKey: "name") as? String ?? "")
+                
+                UserModel.workouts[resultDict?.object(forKey: "workoutId") as? String ?? ""] = newWorkout
+                
+                let trainingVC = self.storyboard?.instantiateViewController(identifier: "trainingVC") as TrainingViewController?
+                trainingVC?.currentWorkoutId = newWorkout.id
+                self.navigationController?.pushViewController(trainingVC!, animated: true)
+                
+            } else if (error != nil){
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
             }
         }
+        
         
         
     }

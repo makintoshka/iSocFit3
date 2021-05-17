@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let manager = ServerManager.sharedManager
         
-        emailTextField.text = "test4@gm.ua"
+        
         
         manager.authorizeUser(parameters: NSDictionary(object: emailTextField.text!, forKey: "email" as NSCopying)) { (someDict, error) in
             if (someDict != nil) {
@@ -68,6 +68,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
+        actionLogin()
         return true
         
     }

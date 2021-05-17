@@ -64,14 +64,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             picker.dismiss(animated: true, completion: nil)
         }
-        //for swift below 4.2
-        //func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        //    picker.dismiss(animated: true, completion: nil)
-        //    let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        //    pickImageCallback?(image)
-        //}
         
-        // For Swift 4.2+
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             picker.dismiss(animated: true, completion: nil)
             guard let image = info[.originalImage] as? UIImage else {

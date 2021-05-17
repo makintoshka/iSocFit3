@@ -57,23 +57,36 @@ class AddAbilityValueController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configNavBar()
+        configPickers()
+        
+        
+    }
+    
+    //MARK: - Config
+    
+    func configPickers(){
+        
         valuePicker.delegate = valuePickerDelegate; valuePicker.dataSource = valuePickerDelegate
         typePicker.delegate = typePickerDelegate; typePicker.dataSource = typePickerDelegate
+        typePicker.selectRow(0, inComponent: 0, animated: true)
+        valuePicker.selectRow(100, inComponent: 0, animated: true)
         
-//        let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
-//                                            style: .plain,
-//                                            target: self,
-//                                            action: #selector(openMenuAction(sender:)))
-//
-//        menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
-//        self.navigationItem.leftBarButtonItem = menuBarButton
+    }
+    
+    func configNavBar(){
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Title Color"),
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 25)
+        ]
+        
+        self.navigationItem.title = "Add new ability"
         
         let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addAction))
         
         self.navigationItem.rightBarButtonItem = addBarButton
         
-        typePicker.selectRow(0, inComponent: 0, animated: true)
-        valuePicker.selectRow(100, inComponent: 0, animated: true)
     }
     
     //MARK: - Actions
@@ -90,13 +103,13 @@ class AddAbilityValueController: UITableViewController{
         
         manager.addAbility(parameters: params as NSDictionary, abilityKey: TypePickerDelegate.selectedType) { (result, error) in
             if (error != nil){
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
             }
         }
         
-        
+        self.navigationController?.popViewController(animated: true)
         
         
     }
@@ -131,7 +144,7 @@ class ValuePickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSourc
 
 class TypePickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSource{
     
-    let typesData = ["Weight", "Height", "Fat %"]
+    let typesData = ["Weight", "Height", "Fat"]
     static var selectedType = ""
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

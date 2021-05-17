@@ -59,9 +59,7 @@ class AbilitiesCustomCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-    /*required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-     }*/
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

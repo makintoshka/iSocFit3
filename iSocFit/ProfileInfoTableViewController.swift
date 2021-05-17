@@ -38,16 +38,34 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         getUserPhoto()
         getUserAbout()
         
-        userEmailField.isHidden = true; userEmailField.delegate = self
-        userNumberField.isHidden = true; userNumberField.delegate = self
-        userAboutTextView.isHidden = true; userAboutTextView.delegate = self
+        textFieldConfig()
+        addBarButtons()
         
-        //userPhoto.image = UIImage(named: "User image.jpg"); userPhoto.isUserInteractionEnabled = false
+    }
+    
+    //MARK: - Configurations
+    
+    func textFieldConfig(){
         
-        //self.navigationItem.setLeftBarButtonItems(nil, animated: true)
-        //self.navigationItem.setHidesBackButton(true, animated: false)
+        userEmailField.isHidden = true; self.userEmailField.delegate = self
+        userNumberField.isHidden = true; self.userNumberField.delegate = self
+        userAboutTextView.isHidden = true; self.userAboutTextView.delegate = self
+        userAboutTextView.isUserInteractionEnabled = false
+        userNumberField.delegate = self
+        userEmailField.delegate = self
+        
+    }
+    
+    func addBarButtons(){
         
         aboutControl.addTarget(self, action: #selector(openAbilityVC(sender:)), for: .valueChanged)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Title Color"),
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 25)
+        ]
+        
+        self.navigationItem.title = "\(UserModel.firstName) \(UserModel.lastName)"
         
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
                                             style: .plain,
@@ -60,8 +78,6 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         editButtonItem.image = UIImage(systemName: "square.and.pencil")
         self.navigationItem.rightBarButtonItem = editButtonItem
         
-        
-        
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -73,10 +89,9 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         userNumberField.text = userNumber.text; userEmailField.text = userEmail.text
         userAboutTextView.text = userAbout.text;
         userPhoto.isUserInteractionEnabled = editing
+        userAboutTextView.isUserInteractionEnabled = editing
         
         self.tableView.setEditing(editing, animated: true)
-        
-        
         
         editButtonItem.image = UIImage(systemName: "square.and.pencil")
         
@@ -101,17 +116,16 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
         userEmailField.isHidden = !isEditing; userEmail.isHidden = isEditing
         userNumberField.isHidden = !isEditing; userNumber.isHidden = isEditing
         userNumber.text = userNumberField.text; userEmail.text = userEmailField.text
-        
-        
         
         return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+        textView.becomeFirstResponder()
         userAbout.isHidden = isEditing; userAboutTextView.isHidden = !isEditing
         userAbout.text = userAboutTextView.text
         
@@ -127,12 +141,20 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         
         manager.getUser(userID: "") { (userInfo) in
             let user = UserModel.currentUser
-            self.userFullName.text = userInfo.object(forKey: "firstName") as! String
-            self.userEmail.text = userInfo.object(forKey: "email") as! String
-            self.userNumber.text = userInfo.object(forKey: "phone") as! String
-            self.userTag.text = userInfo.object(forKey: "username") as! String
+            UserModel.firstName = userInfo.object(forKey: "firstName") as? String ?? ""
+            UserModel.lastName = userInfo.object(forKey: "lastName") as? String ?? ""
+            UserModel.email = userInfo.object(forKey: "email") as? String ?? ""
+            UserModel.phoneNumber = userInfo.object(forKey: "phone") as? String ?? ""
+            UserModel.userName = userInfo.object(forKey: "username") as? String ?? ""
+            
+            self.userFullName.text = "\(UserModel.firstName) \(UserModel.lastName)"
+            self.userEmail.text = UserModel.email
+            self.userNumber.text = UserModel.phoneNumber
+            self.userTag.text = UserModel.userName
+            self.navigationController?.title = "\(UserModel.firstName) \(UserModel.lastName)"
+            
         } onFailure: { (error, statusCode) in
-            let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+            let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
             errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
             self.present(errorAlert, animated: true, completion: nil)
         }
@@ -145,13 +167,13 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         let manager = ServerManager.sharedManager
         
         let params: NSDictionary = [
-            "phone": userNumber.text
-            
+            "phone": userNumber.text ?? "",
+            "email": userEmail.text ?? ""
         ]
         
         manager.updateUser(parameters: params) { (newInfo, error) in
             if(error != nil){
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
                 
@@ -171,14 +193,14 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
                     if (image != nil) {
                         self.userPhoto.image = image
                     } else if (error != nil){
-                        let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                        let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                         errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                         self.present(errorAlert, animated: true, completion: nil)
                     }
                 }
                 
             } else if (error != nil){
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
             }
@@ -194,7 +216,7 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
             if (dict != nil) {
                 print(dict)
             } else if (error != nil){
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
             }
@@ -213,10 +235,9 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
                 
             } else if (error != nil){
                 
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
-                
             }
         }
         
@@ -227,7 +248,7 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         let manager = ServerManager.sharedManager
         
         let params: NSDictionary = [
-            "about": userAbout.text
+            "about": userAbout.text ?? ""
         ]
         
         manager.updateUserAbout(parameters: params) { (json, error) in
@@ -235,7 +256,7 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
                 print(json)
             } else if (error != nil){
                 
-                let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
                 self.present(errorAlert, animated: true, completion: nil)
             }
@@ -255,14 +276,13 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
     
     @objc func openMenuAction(sender: UIBarButtonItem){
         
-        //let loginVC = ViewController()
         let menuVC = storyboard?.instantiateViewController(identifier: "menuViewController")
         
         let leftMenuNavigationController = SideMenuNavigationController(rootViewController: menuVC!)
         leftMenuNavigationController.leftSide = false
         SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        
         present(leftMenuNavigationController, animated: true, completion: nil)
         
     }

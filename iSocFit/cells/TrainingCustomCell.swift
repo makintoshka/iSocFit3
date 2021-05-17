@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol DeleteExerciseCustomCellDelegate {
+    func deleteExercise(workoutId: String, exerciseId: String, atIndexPath: IndexPath)
+}
+
 class TrainingCustomCell: UICollectionViewCell {
     
-    @IBOutlet private weak var exerciseTitle: UILabel!
+    @IBOutlet var exerciseTitle: UILabel!
     @IBOutlet var exerciseRepeatsValue: UILabel!
     @IBOutlet var exerciseSetsValue: UILabel!
     @IBOutlet var exerciseLeadTime: UILabel!
@@ -19,6 +23,40 @@ class TrainingCustomCell: UICollectionViewCell {
     @IBOutlet var rightLine: UIView!
     @IBOutlet var bottomLine: UIView!
     @IBOutlet var deleteButton: UIButton!
+    var delegate: DeleteExerciseCustomCellDelegate!
+    var cellNumber: IndexPath = IndexPath(item: 0, section: 0)
+    @IBAction func deleteExercise(_ sender: Any) {
+        
+        print("_______________________button pressed________________________")
+        
+        
+        self.backgroundColor = .red
+        
+        self.delegate = TrainingViewController()
+        self.delegate.deleteExercise(workoutId: currentWorkoutId, exerciseId: currentExerciseId, atIndexPath: cellNumber)
+        
+        //self.backgroundColor = .white
+    }
+    
+    private var _currentExerciseId: String = ""
+    public var currentExerciseId: String{
+        get {
+            return _currentExerciseId
+        }
+        set {
+            _currentExerciseId = newValue
+        }
+    }
+    
+    private var _currentWorkoutId: String = ""
+    public var currentWorkoutId: String{
+        get {
+            return _currentWorkoutId
+        }
+        set {
+            _currentWorkoutId = newValue
+        }
+    }
     
     var isInEditingMode: Bool = false {
         
@@ -40,9 +78,6 @@ class TrainingCustomCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-    /*required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-     }*/
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,8 +86,6 @@ class TrainingCustomCell: UICollectionViewCell {
         visibleRect.layer.masksToBounds = true
         layer.cornerRadius = 7.0
         layer.masksToBounds = false
-        
-        
         
     }
 

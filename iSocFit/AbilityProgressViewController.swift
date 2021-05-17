@@ -11,8 +11,6 @@ import Charts
 class AbilityProgressViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
         
     private var _abilityKey: String = ""
-    
-    
     public var abilityKey: String{
         get {
             return _abilityKey
@@ -22,28 +20,37 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
         }
     }
     
-    
-    
     @IBOutlet var progressLineChart: LineChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getAbilities()
+        configNavBar()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
         
         
+    }
+    
+    //MARK: - Config
+    
+    func configNavBar(){
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Title Color"),
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 25)
+        ]
+        
+        self.navigationItem.title = "\(abilityKey)"
         
         let addBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addValueAction))
         
         editButtonItem.image = UIImage(systemName: "square.and.pencil")
         
         navigationItem.rightBarButtonItems = [editButtonItem, addBarButton]
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         
     }
     
@@ -56,7 +63,7 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
         manager.getAbilityValues(abilityKey: abilityKey) { [self] (abilityValues, error) in
             if (abilityValues != nil){
                 
-                var tmp: NSMutableArray = []
+                let tmp: NSMutableArray = []
                 
                 for value in abilityValues! {
                     
@@ -75,8 +82,8 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
                     
                     print("________________-")
                 }
-                print(tmp)
-                UserModel.abilities[abilityKey] = tmp as? NSMutableArray
+                let user = UserModel.currentUser
+                UserModel.abilities[abilityKey] = tmp as NSMutableArray
                 tableView.reloadData()
                 
                 let dataToChart = UserModel.abilities[abilityKey] as! [Ability]
@@ -106,6 +113,18 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
     
     //MARK: - Actions
     
+    @objc func refresh(_ sender: AnyObject) {
+       
+        getAbilities()
+        
+        tableView.reloadData()
+        
+        DispatchQueue.main.async {
+              self.refreshControl?.endRefreshing()
+           }
+        
+    }
+    
     @objc func addValueAction(){
         
         let addValueVC = storyboard?.instantiateViewController(identifier: "addAbilityValueVC") as! AddAbilityValueController
@@ -125,6 +144,8 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
         
         if self.tableView.isEditing {
             editButtonItem.image = UIImage(systemName: "checkmark")
+        } else {
+            self.refresh(self)
         }
         
         let addBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addValueAction))
@@ -173,6 +194,8 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
+        let user = UserModel.currentUser
+        
         return UserModel.abilities[abilityKey]?.count ?? 0
         
     }
@@ -180,6 +203,7 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let user = UserModel.currentUser
         let currentAbility = (UserModel.abilities[abilityKey]![indexPath.row]) as! Ability
         
         cell.textLabel?.text = "\(currentAbility.value)"
@@ -188,6 +212,28 @@ class AbilityProgressViewController: UITableViewController, UIPopoverPresentatio
         cell.detailTextLabel?.textColor = UIColor(red: 194/255.0, green: 197/255.0, blue: 213/255.0, alpha: 1.0)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let manager = ServerManager.sharedManager
+        
+        let currentAbility = (UserModel.abilities[abilityKey]![indexPath.row]) as! Ability
+        
+        manager.deleteAbilityValue(valueKey: currentAbility.id) { resultDict, error in
+            if resultDict != nil {
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                self.refresh(self)
+            } else if error != nil{
+                
+              
+            }
+        }
+        
+    self.refresh(self)
+        
     }
     
 

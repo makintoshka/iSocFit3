@@ -13,6 +13,15 @@ class ExerciseInfoCell: UICollectionViewCell {
     @IBOutlet var parameterName: UILabel!
     @IBOutlet var valueForParam: UILabel!
     
+    var isInEditingMode: Bool = false {
+        
+        didSet{
+            
+            
+        }
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -23,10 +32,6 @@ class ExerciseInfoCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    /*required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-     }*/
     
     override func awakeFromNib() {
         super.awakeFromNib()

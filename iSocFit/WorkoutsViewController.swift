@@ -9,19 +9,47 @@ import UIKit
 import SideMenu
 
 class WorkoutsViewController: UITableViewController {
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getWorkouts()
+        configNavBar()
+        configTableView()
+    
+    }
+
+    //MARK: - Config
+    
+    func configTableView(){
         
-        self.navigationItem.title = "Workouts"
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        
         
         //self.navigationItem.rightBarButtonItem = editButtonItem
         
-//        let editBarButton = UIBarButtonItem(barButtonSystemItem: .edit,
-//                                            target: self,
-//                                            action: #selector(editingAction(sender:)))
+        self.tableView.register(UINib(nibName: "WorkoutsCustomCell", bundle: nil), forCellReuseIdentifier: "workoutCell")
+        
+       
+        
+        self.tableView.allowsSelectionDuringEditing = true
+        
+    }
+    
+    func configNavBar(){
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Title Color"),
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 25)
+        ]
+        
+        self.navigationItem.title = "Workouts"
         
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
                                             style: .plain,
@@ -30,17 +58,15 @@ class WorkoutsViewController: UITableViewController {
         
         menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
         self.navigationItem.leftBarButtonItem = menuBarButton
-        //self.navigationItem.rightBarButtonItem = editButtonItem
-        
-        self.tableView.register(UINib(nibName: "WorkoutsCustomCell", bundle: nil), forCellReuseIdentifier: "workoutCell")
         
         let addMenuBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addWorkoutAction))
         
         editButtonItem.image = UIImage(systemName: "square.and.pencil")
         
         self.navigationItem.rightBarButtonItems = [editButtonItem, addMenuBarButton]
+        
     }
-
+    
     //MARK: - API
     
     func getWorkouts(){
@@ -49,9 +75,6 @@ class WorkoutsViewController: UITableViewController {
         
         manager.getWorkouts { (workouts, error) in
             if (workouts != nil){
-                print("________________________")
-                print(workouts)
-                
                 
                 var tmp: [String:WorkoutModel] = [:]
                 
@@ -69,13 +92,11 @@ class WorkoutsViewController: UITableViewController {
                     
                 }
                 
-                print("________________________")
-                print(tmp)
+                let user = UserModel.currentUser
                 UserModel.workouts = tmp
                 tmp = [:]
+                
                 self.tableView.reloadData()
-                
-                
                 
             } else if (error != nil){
                 
@@ -92,6 +113,18 @@ class WorkoutsViewController: UITableViewController {
     
     // MARK: - Actions
     
+    @objc func refresh(_ sender: AnyObject) {
+       
+        getWorkouts()
+        
+        tableView.reloadData()
+        
+        DispatchQueue.main.async {
+              self.refreshControl?.endRefreshing()
+           }
+        
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
@@ -101,6 +134,8 @@ class WorkoutsViewController: UITableViewController {
         
         if self.tableView.isEditing {
             editButtonItem.image = UIImage(systemName: "checkmark")
+        } else{
+            self.refresh(self)
         }
         
         navigationItem.rightBarButtonItem = editButtonItem
@@ -121,7 +156,7 @@ class WorkoutsViewController: UITableViewController {
         leftMenuNavigationController.leftSide = false
         SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        
         present(leftMenuNavigationController, animated: true, completion: nil)
         
     }
@@ -140,6 +175,18 @@ class WorkoutsViewController: UITableViewController {
 
     private var dataToView: [WorkoutModel] = []
     
+    func prepareData(){
+        
+        
+        
+        self.dataToView = []
+        
+        for workout in UserModel.workouts.values {
+            
+            self.dataToView.append(workout)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
     }
@@ -152,13 +199,8 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        dataToView = []
+        prepareData()
         
-        for workout in UserModel.workouts.values {
-            print("ASDASDASDASDA")
-            print(workout)
-            dataToView.append(workout)
-        }
         return dataToView.count
         
         
@@ -168,15 +210,15 @@ class WorkoutsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutsCustomCell
+        
+        dataToView.sort { (a, b) -> Bool in
+            return a.createdAt > b.createdAt
+        }
 
         cell.workoutDateForCell.text = dataToView[indexPath.row].createdAt
         cell.workoutNotesLabel.text = dataToView[indexPath.row].about
         cell.workoutTitle.text = dataToView[indexPath.row].name
-        
-        //print("____________________________")
-        //print(dataToView[indexPath.row])
-        
-
+    
         return cell
     }
     
@@ -185,56 +227,44 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let exerciseVC = storyboard?.instantiateViewController(identifier: "trainingVC") as! TrainingViewController
-        exerciseVC.workoutId = dataToView[indexPath.row].id
-        navigationController?.pushViewController(exerciseVC, animated: true)
-        
+        if isEditing {
+            let editWorkoutVC = (storyboard?.instantiateViewController(identifier: "addWorkoutVC"))! as AddWorkoutViewController
+            editWorkoutVC.workoutId = dataToView[indexPath.row].id
+            navigationController?.pushViewController(editWorkoutVC, animated: true)
+            
+        } else {
+            
+            let exerciseVC = storyboard?.instantiateViewController(identifier: "trainingVC") as! TrainingViewController
+            exerciseVC.currentWorkoutId = dataToView[indexPath.row].id
+            navigationController?.pushViewController(exerciseVC, animated: true)
+            
+        }
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            
+            let manager = ServerManager.sharedManager
+            
+            manager.deleteWorkout(workoutId: dataToView[indexPath.row].id) { resultDict, error in
+                if (resultDict != nil) {
+                    
+                    self.dataToView.remove(at: indexPath.row)
+                    
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                    self.refresh(self)
+                    
+                } else if (error != nil){
+                    
+                    let errorAlert = UIAlertController(title: "Error", message: "There is \(error)", preferredStyle: .alert)
+                    errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                    self.present(errorAlert, animated: true, completion: nil)
+                }
+    
+            }
+            
+        self.refresh(self)
+        
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }

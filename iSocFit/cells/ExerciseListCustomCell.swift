@@ -9,10 +9,12 @@ import UIKit
 
 class ExerciseListCustomCell: UICollectionViewCell {
 
-    @IBOutlet private weak var exerciseTitle: UILabel!
-    @IBOutlet private weak var exerciseRepeatsValue: UILabel!
-    @IBOutlet private weak var exerciseSetsValue: UILabel!
-    @IBOutlet private weak var exerciseLeadTime: UILabel!
+    @IBOutlet var exerciseName: UILabel!
+    @IBOutlet var exerciseRepeatsValue: UILabel!
+    @IBOutlet var exerciseSetsValue: UILabel!
+    @IBOutlet var exerciseLeadTime: UILabel!
+    
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +22,20 @@ class ExerciseListCustomCell: UICollectionViewCell {
         layer.masksToBounds = true
         layer.cornerRadius = 7.0
         layer.masksToBounds = false
+        
+        layer.shadowRadius = 5.0
+        layer.shadowOpacity = 0.1
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        
+        
+        
     }
-
+    
+    
+        
+        
 }
+    
+
+

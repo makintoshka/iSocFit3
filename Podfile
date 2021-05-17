@@ -8,9 +8,8 @@ target 'iSocFit' do
   # Pods for iSocFit
 
   pod 'Charts'
-  pod ‘SideMenu’
+  pod 'SideMenu', '~> 6.0'
   pod 'Alamofire', '~> 5.2'
-  pod 'SemiModalViewController'
   pod 'AlamofireImage', '~> 4.1'
   pod 'Rideau'
 

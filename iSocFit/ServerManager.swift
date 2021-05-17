@@ -15,7 +15,7 @@ class ServerManager: NSObject {
     
     private override init() {}
     
-    private static var url: String = String("https://06f104b41ca2.ngrok.io")
+    private static var url: String = String("https://093fc6e6ae49.ngrok.io")
     private static var token: String = ""
 
     
@@ -27,8 +27,6 @@ class ServerManager: NSObject {
             
             
         }
-        
-        let params = Params()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(ServerManager.token)"
         ]
@@ -40,7 +38,7 @@ class ServerManager: NSObject {
             case .success(let JSON):
                 let jsonDict = JSON as! NSDictionary
                 onSuccess(jsonDict)
-                var user = UserModel.currentUser
+                let user = UserModel.currentUser
                 UserModel.userName = (jsonDict.object(forKey: "username") as? String)!;
                 UserModel.userID = (jsonDict.object(forKey: "userId") as? String)!;
                 UserModel.firstName = (jsonDict.object(forKey: "firstName") as? String)!;
@@ -70,7 +68,7 @@ class ServerManager: NSObject {
                    headers: headers).responseJSON { (responseJSON) in
                     switch responseJSON.result{
                     case .success(let json):
-                        completionHandler(json as! NSDictionary, nil)
+                        completionHandler(json as? NSDictionary, nil)
                     case .failure(let error):
                         completionHandler(nil, error as NSError)
                     }
@@ -96,7 +94,7 @@ class ServerManager: NSObject {
                    requestModifier: nil).responseJSON { (json) in
                     switch json.result {
                     case .success(let json):
-                        completionHandler(json as! NSDictionary, nil)
+                        completionHandler(json as? NSDictionary, nil)
                     case .failure(let error):
                         completionHandler(nil, error as NSError)
                     }
@@ -127,9 +125,8 @@ class ServerManager: NSObject {
                    requestModifier: nil).responseJSON { (response) in
                     switch response.result {
                     case .success(let JSON):
-                        completionHandler(JSON as! NSDictionary, nil)
+                        completionHandler(JSON as? NSDictionary, nil)
                         let jsonDict = JSON as! NSDictionary
-                        let jsonObject = try! JSONSerialization.data(withJSONObject: JSON)
                         ServerManager.token = jsonDict.object(forKey: "access_token") as! String
                     case .failure(let error):
                         completionHandler(nil, error as NSError)
@@ -144,9 +141,12 @@ class ServerManager: NSObject {
         
         struct Params: Encodable{
             var phone: String
+            var email: String
         }
         
-        let params = Params(phone: parameters.object(forKey: "phone") as! String)
+        let params = Params(phone: parameters.object(forKey: "phone") as? String ?? "",
+                            email: parameters.object(forKey: "email") as? String ?? ""
+        )
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(ServerManager.token)",
@@ -162,7 +162,7 @@ class ServerManager: NSObject {
                    requestModifier: nil).responseJSON { (json) in
                     switch json.result {
                     case .success(let json):
-                        competionHandler(json as! NSDictionary, nil)
+                        competionHandler(json as? NSDictionary, nil)
                     case .failure(let error):
                         competionHandler(nil, error as NSError)
                     }
@@ -203,7 +203,7 @@ class ServerManager: NSObject {
         
         AF.request(currentUrl, headers: headers).responseImage { (responseImage) in
             switch responseImage.result{
-            case .success(let image):
+            case .success(_):
                 let img = UIImage(data: responseImage.data!)
                 completionHandler(img, nil)
             case .failure(let error):
@@ -225,7 +225,7 @@ class ServerManager: NSObject {
                    headers: headers).responseJSON { (responseJSON) in
                     switch responseJSON.result {
                     case .success(let json):
-                        completionHandler(json as! NSArray, nil)
+                        completionHandler(json as? NSArray, nil)
                         //print(json)
                     case .failure(let error):
                         completionHandler(nil, error as NSError)
@@ -242,10 +242,6 @@ class ServerManager: NSObject {
         
         let imageData = photo.jpegData(compressionQuality: 0.2)
         //let imageData = photo.pngData()
-        
-        let params = [
-            "Content-Disposition": "form-data"
-        ]
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(ServerManager.token)",
@@ -264,7 +260,7 @@ class ServerManager: NSObject {
         requestModifier: nil).responseJSON { (JSON) in
             switch JSON.result{
             case .success(let json):
-                completionHandler(json as! NSDictionary, nil)
+                completionHandler(json as? NSDictionary, nil)
             case .failure(let error):
                 completionHandler(nil, error as NSError)
             }
@@ -285,7 +281,7 @@ class ServerManager: NSObject {
                    headers: headers).responseJSON { (responseJSON) in
                     switch responseJSON.result {
                     case .success(let json):
-                        completionHandler(json as! NSArray, nil)
+                        completionHandler(json as? NSArray, nil)
                     case .failure(let error):
                         completionHandler(nil, error as NSError)
                     }
@@ -323,7 +319,7 @@ class ServerManager: NSObject {
                    requestModifier: nil).responseJSON { (json) in
                     switch json.result {
                     case .success(let json):
-                        completionHandler(json as! NSDictionary, nil)
+                        completionHandler(json as? NSDictionary, nil)
                     case .failure(let error):
                         completionHandler(nil, error as NSError)
                     }
@@ -343,9 +339,9 @@ class ServerManager: NSObject {
                    headers: headers).responseJSON { (responseJSON) in
                     switch responseJSON.result{
                     case .success(let json):
-                        completionHandler(json as! NSArray, nil)
+                        completionHandler(json as? NSArray, nil)
                     case .failure(let error):
-                        completionHandler(nil, error as! NSError)
+                        completionHandler(nil, error as NSError)
                     }
                    }
         
@@ -364,9 +360,268 @@ class ServerManager: NSObject {
                    headers: headers).responseJSON { (responseJSON) in
                     switch responseJSON.result{
                     case .success(let json):
-                        completionHandler(json as! NSArray, nil)
+                        completionHandler(json as? NSArray, nil)
                     case .failure(let error):
-                        completionHandler(nil, error as! NSError)
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+        
+    }
+    
+    func addWorkout(parameters: NSDictionary, completionHandler: @escaping (NSDictionary?, NSError?) -> ()){
+        
+        let currentUrl = ServerManager.url + "/api/workout"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        
+        struct Params: Encodable {
+            var name: String
+            var about: String
+           
+        }
+        
+        let params = Params(name: parameters.object(forKey: "name") as! String,
+                            about: parameters.object(forKey: "about") as! String)
+        
+        AF.request(currentUrl,
+                   method: .post,
+                   parameters: params,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { (json) in
+                    switch json.result {
+                    case .success(let json):
+                        completionHandler(json as? NSDictionary, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+    }
+    
+    func updateWorkout(parameters: NSDictionary, completionHandler: @escaping (NSDictionary?, NSError?) -> ()){
+        
+        let currentUrl = ServerManager.url + "/api/workout"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        
+        struct Params: Encodable {
+            var name: String
+            var about: String
+            var workoutId: String
+        }
+        
+        let params = Params(name: parameters.object(forKey: "name") as! String,
+                            about: parameters.object(forKey: "about") as! String,
+                            workoutId: parameters.object(forKey: "workoutId") as! String)
+        
+        AF.request(currentUrl,
+                   method: .put,
+                   parameters: params,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { (json) in
+                    switch json.result {
+                    case .success(let json):
+                        completionHandler(json as? NSDictionary, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+    }
+    
+    
+    func addExercises(workoutId: String, parameters: NSArray, completionHandler: @escaping (NSArray?, NSError?) -> ()){
+        
+        let currentUrl = ServerManager.url + "/api/workout/\(workoutId)/exercises/range"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        
+        struct Exercises: Encodable {
+            var repeats: Int
+            var sets: Int
+            var duration: Int
+            var name: String
+            var about: String
+            var calories: Int
+            var weight: Double
+            var category: String
+            var id: String
+            var order: Int
+        }
+        
+        var exercisesToAdd: [Exercises] = []
+        
+        for exercise in parameters {
+            let tmpExercise = exercise as! Exercise
+            exercisesToAdd.append(Exercises(repeats: tmpExercise.repeatsNumber,
+                                            sets: tmpExercise.setsNumber,
+                                            duration: tmpExercise.duration,
+                                            name: tmpExercise.name,
+                                            about: tmpExercise.about,
+                                            calories: tmpExercise.calories,
+                                            weight: tmpExercise.weight,
+                                            category: tmpExercise.category,
+                                            id: tmpExercise.id,
+                                            order: tmpExercise.order))
+        }
+        
+        AF.request(currentUrl,
+                   method: .post,
+                   parameters: exercisesToAdd,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { (json) in
+                    switch json.result{
+                    case .success(let json):
+                        completionHandler(json as? NSArray, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+        
+    }
+    
+    func updateExercise(exerciseId: String, workoutId: String, parameters: NSDictionary, completionHandler: @escaping (NSDictionary?, NSError?) -> ()){
+        
+        let currentUrl = ServerManager.url + "/api/workout/\(workoutId)/exercises/\(exerciseId)"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        print("_____________parameters________________")
+        print(parameters)
+        
+        struct Params: Encodable {
+            var repeats: Int?
+            var sets: Int?
+            var name: String
+            var about: String
+            var weight: Double?
+        }
+        
+        let params = Params(repeats: parameters.object(forKey: "repeats") as? Int ?? nil,
+                            sets: parameters.object(forKey: "sets") as? Int ?? nil,
+                            name: parameters.object(forKey: "name") as! String,
+                            about: parameters.object(forKey: "about") as! String,
+                            weight: parameters.object(forKey: "weight") as? Double ?? nil)
+        
+        print("_____________servermanager________________")
+        print(params)
+        
+        AF.request(currentUrl,
+                   method: .put,
+                   parameters: params,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { json in
+                    switch json.result{
+                    case .success(let json):
+                        completionHandler(json as? NSDictionary, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+    }
+    
+    
+    func deleteExercise(exerciseId: String, workoutId: String, completionHandler: @escaping (NSDictionary?, NSError?) -> ()){
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        
+        let currentUrl = ServerManager.url + "/api/workout/\(workoutId)/exercises/\(exerciseId)"
+        
+        struct Params: Encodable {}
+        
+        let params = Params()
+        
+        AF.request(currentUrl,
+                   method: .delete,
+                   parameters: params,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { JSON in
+                    switch JSON.result{
+                    case .success(let json):
+                        completionHandler(json as? NSDictionary, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+        
+    }
+    
+    func deleteWorkout(workoutId: String, completionHandler: @escaping (NSDictionary?, NSError?) -> ()){
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        
+        let currentUrl = ServerManager.url + "/api/workout/\(workoutId)"
+        
+        struct Params: Encodable {}
+        
+        let params = Params()
+        
+        AF.request(currentUrl,
+                   method: .delete,
+                   parameters: params,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { JSON in
+                    switch JSON.result{
+                    case .success(let json):
+                        completionHandler(json as? NSDictionary, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
+                    }
+                   }
+        
+    }
+    
+    func deleteAbilityValue(valueKey: String, completionHandler: @escaping (NSDictionary?, NSError?) -> ()){
+        
+        let currentUrl = ServerManager.url + "/api/user/stats/\(valueKey)"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(ServerManager.token)",
+            "Content-Type": "application/json"
+        ]
+        struct Params: Encodable{}
+        
+        let params = Params()
+        
+        AF.request(currentUrl,
+                   method: .delete,
+                   parameters: params,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers,
+                   interceptor: nil,
+                   requestModifier: nil).responseJSON { JSON in
+                    switch JSON.result{
+                    case .success(let json):
+                        completionHandler(json as? NSDictionary, nil)
+                    case .failure(let error):
+                        completionHandler(nil, error as NSError)
                     }
                    }
         

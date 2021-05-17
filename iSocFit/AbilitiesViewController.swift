@@ -33,24 +33,49 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
         super.viewDidLoad()
         
         getAbilities()
+        configNavBar()
+        configCollectionView()
         
-        navigationItem.title = "Tony Stark"
+        
+    }
+    
+    //MARK: - Config
+    
+    func configCollectionView(){
+        
+        
+        abilityCollectionView.dataSource = self
+        abilityCollectionView.delegate = self
+        self.abilityCollectionView.register(UINib(nibName: "AbilitiesCustomCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        self.abilityCollectionView.allowsSelection = true
+        
+    }
+    
+    func configNavBar(){
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Title Color"),
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 25)
+        ]
+        
+        self.navigationItem.title = "\(UserModel.firstName) \(UserModel.lastName)"
         
         aboutControl.selectedSegmentIndex = 1;
         
         aboutControl.addTarget(self, action: #selector(openProfileInfo(sender:)), for: .valueChanged)
         
-        abilityCollectionView.dataSource = self
-        abilityCollectionView.delegate = self
         self.navigationItem.setLeftBarButtonItems(nil, animated: true)
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.abilityCollectionView.register(UINib(nibName: "AbilitiesCustomCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        self.abilityCollectionView.allowsSelection = true
+        
         
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "list (1).png"),
                                             style: .plain,
                                             target: self,
                                             action: #selector(openMenuAction(sender:)))
+        
+        let addAbilityBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAbilityAction))
+        
+        self.navigationItem.rightBarButtonItem = addAbilityBarButton
         
         menuBarButton.tintColor = UIColor(red: 138/255.0, green: 149/255.0, blue: 158/255.0, alpha: 1.0)
         self.navigationItem.leftBarButtonItem = menuBarButton
@@ -87,13 +112,12 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
                     tmp[key]?.add(ability)
                     
                 }
+                let user = UserModel.currentUser
                 
                 UserModel.abilities = tmp
                 abilityCollectionView.reloadData()
                 
             } else if((error) != nil){
-                
-                
                 
                 let errorAlert = UIAlertController(title: "Error", message: "There is \(String(describing: error))", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
@@ -107,6 +131,13 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     //MARK: - Actions
     
+    @objc func addAbilityAction(){
+        
+        let addValueVC = storyboard?.instantiateViewController(identifier: "addAbilityValueVC") as! AddAbilityValueController
+        self.navigationController?.pushViewController(addValueVC, animated: true)
+        
+    }
+    
     @objc func openMenuAction(sender: UIBarButtonItem){
         
         let menuVC = storyboard?.instantiateViewController(identifier: "menuViewController")
@@ -115,7 +146,7 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
         leftMenuNavigationController.leftSide = false
         SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        
         present(leftMenuNavigationController, animated: true, completion: nil)
     }
 
@@ -146,6 +177,7 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
         _dataToView.sort { (a, b) -> Bool in
             return a.createdAt > b.createdAt
         }
+        print("__________zopa______________")
         print(UserModel.abilities.count)
         
         return _dataToView.count
@@ -169,14 +201,16 @@ class AbilitiesViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(!(searchBar.text?.isEmpty)!){
-            //reload your data source if necessary
+            
+            
+            
             self.abilityCollectionView?.reloadData()
         }
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if(searchText.isEmpty){
-            //reload your data source if necessary
+            
             self.abilityCollectionView?.reloadData()
         }
     }
